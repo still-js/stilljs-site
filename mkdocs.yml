@@ -1,0 +1,52 @@
+site_name: StillJS
+site_url: https://stilljs.dev
+theme:
+  name: material
+  logo: assets/logo.png
+  features:
+    - navigation.footer
+  palette:
+    #Light Mode
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Light Mode
+      primary: blue
+      accent: deep orange
+
+    #Dark Mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Dark Mode
+      primary: green
+      accent: deep purple
+
+markdown_extensions:
+  #Diagrams settings
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+  # Tab diagrams
+  - pymdownx.tabbed:
+      alternate_style: true
+#extra:
+#  social:
+#    - icon: simple/linkedin
+#      link: https://www.npmjs.com/settings/stilljs/packages
+
+copyright: Cpyright &copy; 2025 StillJS
