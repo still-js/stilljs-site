@@ -1,19 +1,21 @@
-StillJS is a modern frontend framework that enables developers to write and reuse Vanilla JavaScript while providing a modular and component-based architecture similar to React, Angular, and VueJS. It offers a lightweight yet powerful approach to structuring applications, allowing for better maintainability and scalability without introducing a complex abstraction layer. With StillJS, you get the flexibility of raw JavaScript while benefiting from an organized and efficient development workflow. 🚀
-<br><br>
+###  Basic component sample
 
-### Basic component sample
+All components extends from ViewComponent, and whenever gets rendered in the UI/browser can be assigned to the template variable as depicted below in lines 11 to 19
 
-
-```js title="HomeComponent.js" linenums="1"
+```js title="HomeComponent.js" hl_lines="6-14" linenums="1"
 import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
 
 export class HomeComponent extends ViewComponent {
 
     isPublic = true;
     template = `
-        <h1>
-            Put here your template code
-        </h1>
+        <div>
+            <h2>Hello world!</h2>
+            <p>
+            I'm an easy component with a button
+            </p>
+            <button>I'm a button</button>
+        </div>
     `;
 
     constructor() {
@@ -23,6 +25,11 @@ export class HomeComponent extends ViewComponent {
 }
 ```
 
+<iframe src="https://nbernardo.github.io/stilljs/" f
+            rameBorder="0"
+            style="border: 1px solid grey; border-radius:4px; padding: 5px; background: white"
+            >
+</iframe>
 
 
 

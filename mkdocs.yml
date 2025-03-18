@@ -1,8 +1,15 @@
-site_name: StillJS
+site_name: Still.js Framework
 site_url: https://stilljs.dev
+nav:
+  - Index: index.md
+  - Installation: installation-and-running.md
+  - Get started: get-start.md
+  - Routing: routing.md
+  - Structure: Still.js Architecture.md
 theme:
   name: material
-  logo: assets/logo.png
+  logo: assets/img/logo.png
+  favicon: assets/img/logo-no-bg.ico
   features:
     - navigation.footer
   palette:
@@ -22,6 +29,9 @@ theme:
       primary: green
       accent: deep purple
 
+extra_css:
+  - assets/css/general.css
+
 markdown_extensions:
   #Diagrams settings
   - pymdownx.superfences:
@@ -32,7 +42,6 @@ markdown_extensions:
 
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
