@@ -79,7 +79,7 @@ All dev defined variable are considered state which is managed by the components
 Access to the state value is done by calling `.value` property, assigning a value is is done straight to the property itself.
 
 
-```js title="HomeWithEvent.js" hl_lines="13-14 18-20 22-24" linenums="1"
+```js title="CounterComponent.js" hl_lines="13-14 18-20 22-24" linenums="1"
 import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 export class CounterComponent extends ViewComponent {
