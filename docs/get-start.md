@@ -118,3 +118,66 @@ Run result:
             style="border: 1px solid grey; border-radius:4px; padding: 5px; background: white"
             >
 </iframe>
+
+
+<br>
+
+###  Two-way data binding and Forms
+
+When building a form, in several situations Two-way data binding is needed, the (value) notation/directive is provided in which we only need to assign the state in which we are binding out form input, also input needs to be wrapped by a form (&lt;form&gt;&lt;/form&gt;).
+
+
+```js title="BasicForm.js" hl_lines="14 20-22" linenums="1"
+import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
+
+export class BasicForm extends ViewComponent {
+
+	isPublic = true;
+	firstName = '';
+	dateOfBirth;
+
+	template = `
+	<div>
+		<form>
+			<div class="form-group">
+				<label>First Name</label>
+				<input (value)="firstName" type="text"  placeholder="Enter first name">
+			</div>
+			<br/>
+			<div class="form-group">
+				<label>Shoe Size</label>
+				<input 
+					(value)="dateOfBirth" 
+					(validator)="number" 
+					(validator-warn)="Invalid shoe size, number is required"
+					placeholder="Enter valid shoe size"
+				>
+			</div>
+		</form>
+		<br/>
+		<p>Welcome <b>@firstName</b></p>
+		<br/>
+		<button (click)="setFirstName('Michael')">Set Michael</button>
+		<button (click)="setFirstName('Dario')">Set Dario</button>
+	</div>
+	`;
+
+	/** Single line method using arrow function */
+	setFirstName = (val) => this.firstName = val;
+
+	constructor() {
+		super();
+	}
+
+}
+```
+Run result:
+<iframe src="https://nbernardo.github.io/stilljs/#/BasicForm" 
+            frameBorder="0"
+            style="border: 1px solid grey; border-radius:4px; padding: 5px; background: white"
+            >
+</iframe>
+
+!!! note "Input/Form grouping Important consideration"
+
+    Still.js adopts the Bootstrap approach when it comes to form group, though it's not needed, this is quite helpfull to organizing form component by adding it (Bootstrap) as part of the project, also it helps properly handle alignment/positioning like labels and validation messages.
