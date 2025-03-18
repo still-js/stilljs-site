@@ -12,6 +12,7 @@ theme:
   favicon: assets/img/logo-no-bg.ico
   features:
     - navigation.footer
+    - content.code.copy
   palette:
     #Light Mode
     - scheme: default
