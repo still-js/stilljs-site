@@ -181,3 +181,69 @@ Run result:
 !!! note "Input/Form grouping Important consideration"
 
     Still.js adopts the Bootstrap approach when it comes to form group, though it's not needed, this is quite helpfull to organizing form component by adding it (Bootstrap) as part of the project, also it helps properly handle alignment/positioning like labels and validation messages.
+
+
+
+<br>
+
+###  Conditional rendering and Conditional Hide/Unhide
+
+By creating a variable annotated with @Prop (using JSDoc approach) we can then use this as flags (or any other application flow value) thereby being possible to assigne it on the Still.js directive, in this case to render or not, or hide/unhide (renderIf) and (showIf) notations are provided.
+
+```js title="BasicForm.js" hl_lines="7-8 10-11 18 24" linenums="1"
+import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
+
+export class BasicConditionalView extends ViewComponent {
+
+	isPublic = true;
+
+	/** @Prop */
+	isAdminPermisison = false;
+
+	/** @Prop */
+	shouldShowContent = true;
+
+	addLabel = 'Hide';
+	adminLabel = 'Unable';
+
+	template = `
+        <div>
+            <div (renderIf)="self.isAdminPermisison">
+				Hello, this part of the content wond be rendere since
+				<br/>the flag on (renderIf) is false, even if you click
+				<br/>in the Render button which turns flag to true
+			</div>
+
+            <p (showIf)="self.shouldShowContent">
+            If you click the button bellow this content will be hidden
+			<br>in case flag is true, and hide if false
+            </p>
+            <button (click)="hideOrUnhide()">@addLabel content</button>
+            <button (click)="renderContent()">@adminLabel Admin</button>
+        </div>
+    `;
+
+	hideOrUnhide() {
+		this.addLabel = 'Hide';
+		this.shouldShowContent = !this.shouldShowContent;
+		if (!this.shouldShowContent) this.addLabel = 'Unhide';
+	}
+
+	renderContent() {
+		this.adminLabel = 'Unable';
+		this.isAdminPermisison = !this.isAdminPermisison;
+		if (this.isAdminPermisison) this.adminLabel = 'Able';
+	}
+
+	constructor() {
+		super();
+	}
+
+}
+```
+Run result:
+<iframe src="https://nbernardo.github.io/stilljs/#/rendering-showing/basic-conditional-view" 
+            frameBorder="0"
+            style="border: 1px solid grey; border-radius:4px; padding: 5px; background: white"
+            >
+</iframe>
