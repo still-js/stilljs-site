@@ -242,7 +242,7 @@ export class BasicConditionalView extends ViewComponent {
 }
 ```
 Run result:
-<iframe src="https://nbernardo.github.io/stilljs/#/rendering-showing/basic-conditional-view" 
+<iframe src="https://nbernardo.github.io/stilljs/#/BasicConditionalView" 
             frameBorder="0"
             style="border: 1px solid grey; border-radius:4px; padding: 5px; background: white"
             >
