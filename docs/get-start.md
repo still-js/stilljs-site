@@ -250,6 +250,8 @@ Run result:
 
 
 
+<br>
+
 ###  Adding CSS Styles
 
 Everything is base in Vanilla web technologies, therefore we can just write CSS naturally by creating the <style></style> scope, but it it also allows inline CSS if needed just like normall HTML with css in it.
@@ -263,7 +265,7 @@ export class FormatedDataTable extends ViewComponent {
 		<style>
 			ol {
 				display: table;
-				width: 90%;
+				width: 98%;
 				border: 1px solid black;
 			}
 			li, ol::before { display: table-row }
@@ -324,6 +326,11 @@ export class FormatedDataTable extends ViewComponent {
 Run result:
 <iframe src="https://nbernardo.github.io/stilljs/#/stylin/formated-data-table" 
             frameBorder="0"
-            style="border: 1px solid grey; border-radius:4px; padding: 5px; background: white"
+            style="
+				border: 1px solid grey; 
+				border-radius:4px; 
+				width: 50%;
+				height: 200px;
+				padding: 5px; background: white"
             >
 </iframe>
