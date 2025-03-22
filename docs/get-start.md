@@ -334,3 +334,209 @@ Run result:
 				padding: 5px; background: white"
             >
 </iframe>
+
+
+
+<br>
+
+###  Basics of Component Embeding
+
+Bringing a component inside another in general is achievable by using th <st-element></st-element> tag where we can then specify the component (tag property as line 16) name we want to embed as child, additional child component property (e.g. lines 18 and 19) and event handlers also can be passed the same way (in the tag).
+
+=== "Parent Component"
+	```js title="UserForm.js" hl_lines="8-9 12 15-21 28-30" linenums="1"
+	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
+
+	export class UserForm extends ViewComponent {
+
+		isPublic = true;
+
+		/** @Prop */
+		childTitleState = 'Child Title from Parent';
+		changeCounter = 0;
+
+		template = `
+			<button (click)="updateChildTitle()">Change child title</button>
+			<br/>
+			<br/>
+			<st-element 
+				component="UserGrid"
+				ref="insideFormGridReference"
+				tableTitle="self.childTitleState"
+				titleMergeSize="5"
+				>
+			</st-element>
+		`;
+
+		updateChildTitle() {
+
+			this.changeCounter = this.changeCounter.value + 1;
+
+			/** @type { UserGrid } */
+			const userGridObj = Components.getFromRef('insideFormGridReference');
+			userGridObj.tableTitle = 'Title altered ' + this.changeCounter.value + 'x';
+		}
+
+		constructor() {
+			super();
+		}
+
+	}
+	```
+
+=== "Child Component"
+	```js title="UserGrid.js" hl_lines="7-9 14" linenums="1"
+	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
+
+	export class UserGrid extends ViewComponent {
+
+		isPublic = true;
+
+		tableTitle = "Users List Not changed";
+		/** @Prop */
+		titleMergeSize;
+
+		template = `
+			<table border="1">
+				<thead>
+					<tr><th colspan="@titleMergeSize">@tableTitle</td></tr>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Age</th>
+						<th>Country</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>John Doe</td>
+						<td>john@example.com</td>
+						<td>28</td>
+						<td>USA</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>Jane Smith</td>
+						<td>jane@example.com</td>
+						<td>32</td>
+						<td>UK</td>
+					</tr>
+				</tbody>
+			</table>
+
+		`;
+
+		constructor() {
+			super();
+		}
+	}
+	```
+
+Run result:
+<iframe src="https://nbernardo.github.io/stilljs/#/user/user-form" 
+            frameBorder="0"
+            style="
+				border: 1px solid grey; 
+				border-radius:4px; 
+				width: 100%;
+				height: 200px;
+				padding: 5px; background: white"
+            >
+</iframe>
+
+
+<br>
+
+###  Basics of Navigation
+
+Whe using still-cli (`@stilljs/cli` - which is the recommended way) to generate the component, both route name (same as component name) and component URL will be added automatically in the `route.map.js` file, therefore, navigation can be done the way it workes in regular web pages. As in the bellow code, navigation is done by using route name. 
+
+=== "First Component"
+	```js title="EntryMenu.js" hl_lines="12" linenums="1"
+	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
+
+	export class EntryMenu extends ViewComponent {
+
+		isPublic = true;
+		template = `
+			<div>
+				This is Entry menu component, press the bellow 
+				<br/>button or in the link to navigate to User
+				<br/>
+				<br/>
+				<button (click)="goto('UserRegistration')">Register user</button>
+			</div>
+		`;
+
+		constructor() {
+			super();
+		}
+	}
+	```
+
+=== "Second Component"
+	```js title="UserRegistration.js" hl_lines="12" linenums="1"
+	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
+
+	export class UserRegistration extends ViewComponent {
+
+		isPublic = true;
+		template = `
+			<div class="user-reg-container">
+				<span class="smile-icone">&#9787;</span> 
+				<br/>
+				This is the user registration component
+				<br/>
+				<button (click)="goto('EntryMenu')">Go to Menu</button>
+			</div>
+
+			<style>
+				.user-reg-container { text-align: center; }
+				.smile-icone { 
+					color: orange;
+					font-size: 60px;
+				}
+			</style>
+		`;
+
+		constructor() {
+			super();
+		}
+	}
+	```
+
+=== "Routing file"
+	```js title="route.map.js" hl_lines="4 5" linenums="1"
+	export const stillRoutesMap = {
+		viewRoutes: {
+			regular: {
+				EntryMenu: { path: "app/components/routing" },
+				UserRegistration: { path: "app/components/routing" }
+			},
+			lazyInitial: {}
+		}
+	}
+
+	```
+
+Run result:
+<iframe src="https://nbernardo.github.io/stilljs/#/routin/entry-menu" 
+            frameBorder="0"
+            style="
+				border: 1px solid grey; 
+				border-radius:4px; 
+				width: 50%;
+				height: 200px;
+				padding: 5px; background: white"
+            >
+</iframe>
+
+
+
+
+
+
+<br/>
+<br/>
