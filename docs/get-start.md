@@ -18,10 +18,6 @@ export class HomeComponent extends ViewComponent {
         </div>
     `;
 
-    constructor() {
-        super();
-    }
-
 }
 ```
 Run result:
@@ -30,6 +26,52 @@ Run result:
             style="border: 1px solid grey; border-radius:4px; padding: 5px; background: white"
             >
 </iframe>
+
+
+<br>
+
+###  Splitting Template (`.html`) from `.js` file
+
+As long as both template/.html and .js files are in the same folder and have the are named similarly, we just need to remove the variable template from .js and it will be able to refer to the .html file instead. Tamplete splitting from .js file is quite usefull for complex template coding also making it more manageable and organized.
+
+=== "JavaScript file"
+	```js title="SlittedComponent.js" hl_lines="16-18 12" linenums="1"
+	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
+
+	export class SlittedComponent extends ViewComponent {
+		isPublic = true;
+	}
+	```
+
+=== "HTML Template file"
+	```html title="SlittedComponent.html" linenums="1"
+	<div>
+		<h3>
+			This is the header for the splitted template file
+		</h3>
+		<br/>
+		<hr/>
+		<br/>
+		<p>
+			Template splitted from the .js file is quite usefull especially on 
+			those situations that the template content is quite extensive, 
+			normally template inside the .js file can be natually used for smaller 
+			template cases.
+		</p>
+	</div>
+	```
+	
+Run result:
+<iframe src="https://nbernardo.github.io/stilljs/#/bas/slitted" 
+            frameBorder="0"
+            style="border: 1px solid grey; 
+				   border-radius:4px;
+				   width: 100%; 
+				   padding: 5px; background: white"
+            >
+</iframe>
+
+
 
 <br>
 
@@ -55,10 +97,6 @@ export class HomeWithEvent extends ViewComponent {
 
 	callMe() {
 		alert(`Hi, you clicked me, I'm a button`);
-	}
-
-	constructor() {
-		super();
 	}
 
 }
@@ -104,11 +142,6 @@ export class CounterComponent extends ViewComponent {
 	decrement() {
 		this.count = this.count.value - 1;
 	}
-
-	constructor() {
-		super();
-	}
-
 
 }
 ```
@@ -164,10 +197,6 @@ export class BasicForm extends ViewComponent {
 
 	/** Single line method using arrow function */
 	setFirstName = (val) => this.firstName = val;
-
-	constructor() {
-		super();
-	}
 
 }
 ```
@@ -233,10 +262,6 @@ export class BasicConditionalView extends ViewComponent {
 		this.adminLabel = 'Unable';
 		this.isAdminPermisison = !this.isAdminPermisison;
 		if (this.isAdminPermisison) this.adminLabel = 'Able';
-	}
-
-	constructor() {
-		super();
 	}
 
 }
@@ -316,11 +341,6 @@ export class FormatedDataTable extends ViewComponent {
 		</ol>
 	`;
 
-	constructor() {
-		super();
-	}
-
-
 }
 ```
 Run result:
@@ -377,10 +397,6 @@ Bringing a component inside another in general is achievable by using th <st-ele
 			userGridObj.tableTitle = 'Title altered ' + this.changeCounter.value + 'x';
 		}
 
-		constructor() {
-			super();
-		}
-
 	}
 	```
 
@@ -427,10 +443,6 @@ Bringing a component inside another in general is achievable by using th <st-ele
 			</table>
 
 		`;
-
-		constructor() {
-			super();
-		}
 	}
 	```
 
@@ -470,9 +482,6 @@ Whe using still-cli (`@stilljs/cli` - which is the recommended way) to generate 
 			</div>
 		`;
 
-		constructor() {
-			super();
-		}
 	}
 	```
 
@@ -501,9 +510,6 @@ Whe using still-cli (`@stilljs/cli` - which is the recommended way) to generate 
 			</style>
 		`;
 
-		constructor() {
-			super();
-		}
 	}
 	```
 
@@ -528,6 +534,182 @@ Run result:
 				border: 1px solid grey; 
 				border-radius:4px; 
 				width: 50%;
+				height: 200px;
+				padding: 5px; background: white"
+            >
+</iframe>
+
+
+
+<br>
+
+###  Basics of Navigation
+
+Because Still.js is 100% pure/Vanilla JavaScript, DOM manipulation can be done straight as the native/regular DOM API, no workaround or additional layer/special coding is needed. 
+
+=== "First Component"
+```js title="EntryMenu.js" hl_lines="18 31-37 40-46 28" linenums="1"
+import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
+
+export class LoginComponent extends ViewComponent {
+
+	isPublic = true;
+
+	userName;
+	password;
+
+	template = `
+		<form onsubmit="return false;">
+			<div>Type the same for both user and password for <br>success login, something else for invalid<div>
+			
+			Username: <input type="text" (value)="userName">
+			<br><br>
+			Password: <input type="password" (value)="password"><br>
+			
+			<span id="loginStatus"></span><br>
+
+			<button (click)="processLogin()">Login</button>
+		</form>
+	`;
+
+	processLogin() {
+
+		const user = this.userName.value;
+		const password = this.password.value;
+		const messageContainer = document.getElementById('loginStatus');
+
+		if (user !== password || user == '' || password == '') {
+			/** Assignin new content via DOM manipulation */
+			messageContainer.innerHTML = 'Invalid user or password';
+			/** CSS updating through DOM */
+			messageContainer.style = 'color: red; background-color: #ab1f1f38;';
+			/** Changing inputs border via DOM manipulation */
+			document.querySelector('input[type=text]').style = 'border: 1px solid red';
+			document.querySelector('input[type=password]').style = 'border: 1px solid red';
+
+		} else {
+			/** Assignin new content via DOM manipulation */
+			messageContainer.innerHTML = 'User login success! &#9787;';
+			/** CSS updating through DOM */
+			messageContainer.style = 'color: green; background-color: none;';
+			/** Changing inputs border via DOM manipulation */
+			document.querySelector('input[type=text]').style = 'border: 1px solid green';
+			document.querySelector('input[type=password]').style = 'border: 1px solid green';
+		}
+	}
+
+}
+```
+
+Run result:
+<iframe src="https://nbernardo.github.io/stilljs/#/dom-manipulatio/login" 
+            frameBorder="0"
+            style="
+				border: 1px solid grey; 
+				border-radius:4px; 
+				width: 50%;
+				height: 200px;
+				padding: 5px; background: white"
+            >
+</iframe>
+
+
+<br>
+
+###  Looping and Rendering from a List
+
+Lopping a list and rendering its items is quite simple, Still.js provides the (forEach) notation/directive, which ca pass through a top level container which is then used to wrap the template for the desire output. 
+
+=== "Main Component"
+	```js title="LoopingDirective.js" hl_lines="7-12 18-23 35" linenums="1"
+	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
+
+	export class LoopingDirective extends ViewComponent {
+
+		isPublic = true;
+
+		/** This is the list of products ( data source ) */
+		productList = [
+			{ name: 'Orange', sold: 3, stockAvail: 7, price: '0.75$' },
+			{ name: 'Apple', sold: 1, stockAvail: 5, price: '0.88$' },
+			{ name: 'Banana', sold: 10, stockAvail: 50, price: '1.03$' },
+		]
+
+		template = `
+			<div>
+				<h5>Looping with HTML child</h5>
+				<br>
+				<span (forEach)="productList">
+					Stock Availability
+					<div each="item">
+						<b>Name:</b> {item.name} - <b>Sock:</b> {item.stockAvail} - <b>Price:</b> {item.price}
+					</div>
+				<span>
+			</div>
+			
+			<br><hr><br/>
+
+			<div>
+				<h5>Looping with child Component</h5>
+				<br>
+				<span (forEach)="productList">
+					Shipping Cart Checkout
+					<!-- Fields are mapped one to one from data 
+						source (productList) to the child component state -->
+					<st-element component="ShoppingItem" each="item"></st-element>
+				<span>
+			</div>
+		`;
+	}
+	```
+
+=== "Child Component used in the Loop"
+	```js title="ShoppingItem.js" hl_lines="7-13 17-19" linenums="1"
+	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
+
+	export class ShoppingItem extends ViewComponent {
+
+		isPublic = true;
+
+		/**
+		 * Bellow states (name, sold, price) are being mapped directly since those
+		 * names coincides with each item in the Data source in the parent component
+		 */
+		name;
+		sold;
+		price;
+
+		template = `
+			<div class="shoping-item-card">
+				<span>Produce Name: @name</span>
+				<span>Quantity: @sold</span>
+				<span>Price: @price</span>
+			</div>
+
+			<style>
+				.shoping-item-card{ display: flex; }
+
+				.shoping-item-card span:first-child { width: 30%; }
+				
+				.shoping-item-card span:last-child { border-right: none; }
+
+				.shoping-item-card span {
+					border-right: 1px solid black;
+					padding: 2px 5px; width: 18%;
+					text-align: center; display: block;
+				}
+			</style>
+		`;
+	}
+	```
+
+Run result:
+<iframe src="https://nbernardo.github.io/stilljs/#/data-u/looping-directive" 
+            frameBorder="0"
+            style="
+				border: 1px solid grey; 
+				border-radius:4px; 
+				width: 100%;
 				height: 200px;
 				padding: 5px; background: white"
             >
