@@ -710,7 +710,7 @@ Run result:
 				border: 1px solid grey; 
 				border-radius:4px; 
 				width: 100%;
-				height: 200px;
+				height: 275px;
 				padding: 5px; background: white"
             >
 </iframe>
