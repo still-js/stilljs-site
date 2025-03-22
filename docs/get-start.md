@@ -2,11 +2,16 @@
 
 All components extends from ViewComponent, and whenever gets rendered in the UI/browser can be assigned to the template variable as depicted below in lines 11 to 19.
 
-```js title="HomeComponent.js" hl_lines="6-14" linenums="1"
+```js title="HomeComponent.js" hl_lines="11-18" linenums="1"
 import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
 
 export class HomeComponent extends ViewComponent {
 
+	/** 
+	 * isPublic flag is needed for any component that is publicly accessible, therefore, 
+	 * when dealing with authentication and permission scenario any component requiring
+	 * user permission the flag will be removed or turned to false
+	 */
     isPublic = true;
     template = `
         <div>
@@ -117,18 +122,21 @@ All dev defined variable are considered state which is managed by the components
 Access to the state value is done by calling `.value` property, assigning a value is is done straight to the property itself.
 
 
-```js title="CounterComponent.js" hl_lines="13-14 18-20 22-24" linenums="1"
+```js title="CounterComponent.js" hl_lines="16-17 21-23 25-27 9" linenums="1"
 import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 export class CounterComponent extends ViewComponent {
 
 	isPublic = true;
+	/**
+	 * This is a state since no annotation or signature is put for it
+	 */
 	count = 0;
 
 	template = `
 	<div>
 		<p>
-		My counter state is @count
+			My counter state is @count
 		</p>
 		<button (click)="increment()">Increment (@count)</button>
 		<button (click)="decrement()">Decrement (@count)</button>
@@ -167,7 +175,7 @@ export class BasicForm extends ViewComponent {
 
 	isPublic = true;
 	firstName = '';
-	dateOfBirth;
+	shoeSize;
 
 	template = `
 	<div>
@@ -180,7 +188,7 @@ export class BasicForm extends ViewComponent {
 			<div class="form-group">
 				<label>Shoe Size</label>
 				<input 
-					(value)="dateOfBirth" 
+					(value)="shoeSize" 
 					(validator)="number" 
 					(validator-warn)="Invalid shoe size, number is required"
 					placeholder="Enter valid shoe size"
@@ -217,20 +225,25 @@ Run result:
 
 ###  Conditional rendering and Conditional Hide/Unhide
 
-By creating a variable annotated with @Prop (using JSDoc approach) we can then use this as flags (or any other application flow value) thereby being possible to assigne it on the Still.js directive, in this case to render or not, or hide/unhide (renderIf) and (showIf) notations are provided.
+By creating a variable annotated with @Prop (using JSDoc approach) we can then use this as flags (or any other application flow value) thereby being possible to assigne it on the Still.js directive, in this case to render or not, or hide/unhide (renderIf) and (showIf) notations are provided respectively.
 
-```js title="BasicForm.js" hl_lines="7-8 10-11 18 24" linenums="1"
+```js title="BasicForm.js" hl_lines="11-13 16 23 29" linenums="1"
 import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 export class BasicConditionalView extends ViewComponent {
 
 	isPublic = true;
 
-	/** @Prop */
+	/**
+	 * The props differ from state (which does not have any annotation)
+	 * in a way that state allow to trace changes which is also useful
+	 * in the component to component communication scenario in real time/reactively
+	 * @Prop 
+	 */
 	isAdminPermisison = false;
 
-	/** @Prop */
-	shouldShowContent = true;
+	//Annotation can be put in the same line of the prop/variable
+	/** @Prop */ shouldShowContent = true;
 
 	addLabel = 'Hide';
 	adminLabel = 'Unable';
@@ -238,14 +251,14 @@ export class BasicConditionalView extends ViewComponent {
 	template = `
         <div>
             <div (renderIf)="self.isAdminPermisison">
-				Hello, this part of the content wond be rendere since
-				<br/>the flag on (renderIf) is false, even if you click
-				<br/>in the Render button which turns flag to true
+				Hello, this part of the content wont be rendered since
+				the flag on (renderIf) is false, even if you click
+				in the second button which turns flag to true
 			</div>
 
             <p (showIf)="self.shouldShowContent">
-            If you click the button bellow this content will be hidden
-			<br>in case flag is true, and hide if false
+            If you click the button bellow this content will be unhide
+			<br>in case flag is true, and hidden if false
             </p>
             <button (click)="hideOrUnhide()">@addLabel content</button>
             <button (click)="renderContent()">@adminLabel Admin</button>
@@ -361,7 +374,7 @@ Run result:
 
 ###  Basics of Component Embeding
 
-Bringing a component inside another in general is achievable by using th <st-element></st-element> tag where we can then specify the component (tag property as line 16) name we want to embed as child, additional child component property (e.g. lines 18 and 19) and event handlers also can be passed the same way (in the tag).
+Bringing a component inside another in general is achievable by using the `<st-element></st-element>` tag where we can then specify the component name we want to embed as child (tag property as line 16), additional child component property (e.g. lines 18 and 19) and event handlers also can be passed the same way (in the tag) as long as they child difined it.
 
 === "Parent Component"
 	```js title="UserForm.js" hl_lines="8-9 12 15-21 28-30" linenums="1"
@@ -463,7 +476,7 @@ Run result:
 
 ###  Basics of Navigation
 
-Whe using still-cli (`@stilljs/cli` - which is the recommended way) to generate the component, both route name (same as component name) and component URL will be added automatically in the `route.map.js` file, therefore, navigation can be done the way it workes in regular web pages. As in the bellow code, navigation is done by using route name. 
+Whe using still-cli (`@stilljs/cli` - which is the recommended way) to generate the component, both route name (same as component name) and component URL will be added automatically in the `route.map.js` file in the project root folder, therefore, navigation can be done the way it workes in regular web pages. in the bellow code navigation is done by using route name. 
 
 === "First Component"
 	```js title="EntryMenu.js" hl_lines="12" linenums="1"
@@ -543,7 +556,7 @@ Run result:
 
 <br>
 
-###  Basics of Navigation
+###  DOM Manipulation
 
 Because Still.js is 100% pure/Vanilla JavaScript, DOM manipulation can be done straight as the native/regular DOM API, no workaround or additional layer/special coding is needed. 
 
@@ -618,7 +631,7 @@ Run result:
 
 ###  Looping and Rendering from a List
 
-Lopping a list and rendering its items is quite simple, Still.js provides the (forEach) notation/directive, which ca pass through a top level container which is then used to wrap the template for the desire output. 
+Lopping a list and rendering its items is quite simple, Still.js provides the (forEach) notation/directive, which can be pass to a top level container which is then used to wrap the template for the desired output of each list item. 
 
 === "Main Component"
 	```js title="LoopingDirective.js" hl_lines="7-12 18-23 35" linenums="1"
