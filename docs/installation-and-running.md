@@ -37,7 +37,7 @@ After typing for serving the project it gets oppened automatically in the browse
 
 ![Project Structure](assets/img/project-open-in-browser-doc.png)
 
-<h2>You're all set! enjoy you coding.</h2>
+<h2>You're all set! enjoy your coding.</h2>
 <br/>
 
 

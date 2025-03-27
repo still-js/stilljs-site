@@ -1,19 +1,27 @@
 site_name: Still.js Framework
 site_url: https://stilljs.dev
 nav:
-  - Index: index.md
-  - Installation: installation-and-running.md
-  - Get started: get-start.md
-  - Routing: routing.md
-  - Structure: Still.js Architecture.md
+  - WHAT IS Still.js: index.md
+  - INSTALLATION: installation-and-running.md
+  - GET STARTED: get-start.md
+  - COMPONENTS:
+      - Fundamentls: components.md
+      #- Private Components: components-private.md
+      #- Multi level (3+) nesting: components-nesting-3+.md
+  - ROUTING: routing.md
+  - STRUCTURE: Still.js Architecture.md
   #- Playground: playground.md
 theme:
   name: material
   logo: assets/img/logo.png
   favicon: assets/img/logo-no-bg.ico
   features:
+    - navigation.expand
     - navigation.footer
     - content.code.copy
+
+  icon:
+    repo: fontawesome/brands/github
   palette:
     #Light Mode
     - scheme: default
