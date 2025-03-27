@@ -6,8 +6,8 @@ nav:
   - GET STARTED: get-start.md
   - COMPONENTS:
       - Fundamentls: components.md
-      #- Private Components: components-private.md
-      #- Multi level (3+) nesting: components-nesting-3+.md
+      - Private Components: components-private.md
+      - Multi level (3+) nesting: components-nesting-3+.md
   - ROUTING: routing.md
   - STRUCTURE: Still.js Architecture.md
   #- Playground: playground.md
