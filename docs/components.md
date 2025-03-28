@@ -203,7 +203,7 @@ It's possible to put one component inside another, nevertheless, in order to gua
 	}
 	```
 
-=== "Anothe Child Component"
+=== "Another Child Component"
 	```js title="BiddersList.js" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
@@ -370,7 +370,7 @@ It's also possible for the child to pass values to parent when executing method 
 
 	}
 
-In addition to using `<st-element>` component props, there are other means available for component to component communication such as Pub/Sub, both @Proxy, ref which is done to throug `<st-element>` again, and the Service which a global kind. (see to the Component Communication).
+In addition to using `<st-element>` component props, there are other means available for component to component communication such as `Pub/Sub`, both `@Proxy`and `ref` which is done to through `<st-element>` again, and the `Service` which a global kind. (see to the Component Communication).
 
 <br>
 <br>
