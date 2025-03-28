@@ -6,6 +6,7 @@ nav:
   - GET STARTED: get-start.md
   - COMPONENTS:
       - Fundamentls: components.md
+      - Inter Communication: components-communication.md
       - Private Components: components-private.md
       - Multi level (3+) nesting: components-nesting-3+.md
   - ROUTING: routing.md
