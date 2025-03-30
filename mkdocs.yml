@@ -2,11 +2,14 @@ site_name: Still.js Framework
 site_url: https://stilljs.dev
 nav:
   - WHAT IS Still.js: index.md
-  - INSTALLATION: installation-and-running.md
+  - INSTALLATION:
+      - OPTION 1 - Still.js Project: installation-and-running.md
+      - OPTION 2 - Using CDN: installation-and-running-cdn.md
   - GET STARTED: get-start.md
   - COMPONENTS:
       - Fundamentls: components.md
       - Inter Communication: components-communication.md
+      - Lone component and Microfrontend: lone-component.md
       - Private Components: components-private.md
       - Multi level (3+) nesting: components-nesting-3+.md
   - ROUTING: routing.md

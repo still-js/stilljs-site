@@ -1,21 +1,34 @@
-#### 1. Installation
-`npm install @stilljs/cli -g`
 
-In pricinple, still.js application development process is tied to the NPM, therefore, for it to be available in our machin we need to make a global installation.
+
+###  Creating a Still.js Project
+<hr/>
+
+
+
+#### 1. Installation
+
+```
+npm install @stilljs/cli -g
+```
+
+In pricinple, still.js application development process is tied to the NPM, therefore, for it to be available in our machine we need to make a global (-g) installation.
 
 Once installed, still-cli can be invoked from the terminal by typing `npx still` to see the available commands and ooptions.
 
 <br>
 
 #### 2. Creating a project
-`npx still create project project-name`
+
+```
+npx still create project project-name
+```
 
 After creating a project a new folder is created with the name that was specified.
 
 
 <br>
 
-#### 3. Acessing the project
+#### 3. Acessing the project (Project structure)
 
 ![Project Structure](assets/img/project-structure.png)
 
@@ -39,5 +52,3 @@ After typing for serving the project it gets oppened automatically in the browse
 
 <h2>You're all set! enjoy your coding.</h2>
 <br/>
-
-

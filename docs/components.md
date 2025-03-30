@@ -4,11 +4,7 @@
 
 <br/>
 
-### StillJS Routing and Routing Object
-
-
-
-#### Overview
+### Overview
 - In Still.js Component is a way of handling just anything that results in a UI out put, can be a whole page/UI, a widget, an autonomos application part (e.g. Form, Grid, Datatable, Button, etc.), or even whole application (Micro-Fronted which can be put inside a regular page or HTML), plus, it can be resuable and navegable (in case of UI/page components).
 
 - The component anatomy normally consider 2 required aspects, first it has to extend from ViewComponent and second it has to define the template variable which will be used to render the visual part of it, in some situations, a third aspect is to be taken into consideration which is the constructor definition (in case there is something we want to run when starting running the component) which in turn requires the super() method from parent class (.e.g ViewComponent, BaseService) to be called inside.
@@ -373,4 +369,13 @@ It's also possible for the child to pass values to parent when executing method 
 In addition to using `<st-element>` component props, there are other means available for component to component communication such as `Pub/Sub`, both `@Proxy`and `ref` which is done to through `<st-element>` again, and the `Service` which a global kind. (see to the Component Communication).
 
 <br>
+
+
+!!! Note "Embieding component in you regular HTML or within other Frameworks"
+
+    When it comes to components, Still.js provides the Lone Component which only require to reference the CDN for both CSS and JavaScript files thereby not needing to create a Still.js project, therefore, this approach can be followed either for small use case as well as for complex ones such as Microfrontend. (follow do documentation here)
+
 <br>
+<br>
+
+
