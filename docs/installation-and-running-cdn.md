@@ -3,6 +3,8 @@
 In the CND mode, instead of the whole folder structure, only the `app` folder and `router.map.js` file are needed, also, we need to set the path where they'll be placeed by using the `STILL_HOME` variable, follow the folder structure example as well as coding sample right after:
 
 
+<a name="project-structure"></a>
+
 
 #### 1. Folder Structure
 === "Folder structure in CDN mode"
@@ -115,7 +117,7 @@ The proper way of running the project in the CDN mode is by having it from a web
 npm i -g live-server
 ```
 
-Running the project from inside the project root folder (`my-project-name`)
+Running the project from inside the project root folder ( <a href="#project-structure">`my-project-name` </a>)
 ```js
 npx live-server
 ```
