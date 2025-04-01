@@ -123,7 +123,7 @@ npx live-server
 ```
 
 Run result:
-<iframe src="https://nbernardo.github.io/stilljs/#/for-cdn/example" 
+<iframe src="https://still-js.github.io/stilljs-doc-website/#/for-cdn/example" 
             frameBorder="0"
             style="border: 1px solid grey; border-radius:4px; padding: 5px; background: white"
             >
