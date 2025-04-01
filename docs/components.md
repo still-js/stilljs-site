@@ -2,6 +2,10 @@
 
     Thee is yet a work in progress in this documentation, it means that some addiotnal content, scenarios and example are yet to be brought, nevertheless the current content cover from the basics to more elaborated scenarios.
 
+
+!!! failure "<u>ViewComponent</u> and <u>BaseService</u> import in <a href="../installation-and-running-cdn/">CDN/Lone component mode</a>"
+
+	The import (e.g. `import { ViewComponent } from "@still/component/super/ViewComponent.js"`) of <b>ViewComponent</b> and <b>BaseService</b> classes is inexistent <a href="../installation-and-running-cdn/">CDN mode setup</a>, as this is already provided by CDN itself.
 <br/>
 
 ### Overview
@@ -224,6 +228,7 @@ Above we have to parent component, which has one level of offsprings, additional
 
 <br/>
 
+<a name="st-element-parent-child-communication"></a>
 ### 4. Component to Component communication
 
 Covering from the most basic to the most complex scenarios, Still.js provides wide different means of providing communication from component to component (e.g. Parent to child, Sibling to Sibling, any component to any other(s)). (see to the Component Communication for more details)
@@ -366,7 +371,7 @@ It's also possible for the child to pass values to parent when executing method 
 
 	}
 
-In addition to using `<st-element>` component props, there are other means available for component to component communication such as `Pub/Sub`, both `@Proxy`and `ref` which is done to through `<st-element>` again, and the `Service` which a global kind. (see to the Component Communication).
+In addition to using `<st-element>` component props, there are other means available for component to component communication such as `Pub/Sub`, both <a href="../components-communication#proxy-example"><b>`@Proxy`</b></a> and <a href="../components-communication#reference-example"><b>`ref`</b></a> which is done to through `<st-element>` again, and the <a href="../components-communication#service-example"><b>`Service`</b></a> which is a global kind. (see to the <a href="../components-communication">Component Communication</a>).
 
 <br>
 

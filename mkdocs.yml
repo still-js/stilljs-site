@@ -3,8 +3,8 @@ site_url: https://stilljs.dev
 nav:
   - WHAT IS Still.js: index.md
   - INSTALLATION:
-      - OPTION 1 - Still.js Project: installation-and-running.md
-      - OPTION 2 - Using CDN: installation-and-running-cdn.md
+      - Setup OPTION 1 - Still.js Project: installation-and-running.md
+      - Setup OPTION 2 - Using CDN: installation-and-running-cdn.md
   - GET STARTED: get-start.md
   - COMPONENTS:
       - Fundamentls: components.md
@@ -55,7 +55,13 @@ extra_javascript:
   - docs/assets/editor.js
 
 markdown_extensions:
-  #Diagrams settings
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator:
+        !!python/name:material.extensions.emoji.to_svg #Diagrams settings
+
+
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
