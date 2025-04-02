@@ -86,15 +86,6 @@ my-project-name
             lazyInitial: {}
         }
     }
-
-
-    export function $stillGetRouteMap() {
-        return {		route: {
-                ...stillRoutesMap.viewRoutes.regular,
-                ...stillRoutesMap.viewRoutes.lazyInitial
-            },
-        }
-    }
 	```
 
 
@@ -136,7 +127,7 @@ Run result:
 <div style="padding-left: 20px;">
 JavaScript: 
 ```
-https://cdn.jsdelivr.net/npm/@stilljs/core@0.0.8/@still/lone.js
+https://cdn.jsdelivr.net/npm/@stilljs/core@latest/@still/lone.js
 ```
 </div>
 
@@ -144,7 +135,7 @@ https://cdn.jsdelivr.net/npm/@stilljs/core@0.0.8/@still/lone.js
 <div style="padding-left: 20px;">
 CSS: 
 ``` 
-https://cdn.jsdelivr.net/npm/@stilljs/core@0.0.8/@still/ui/css/still.css
+https://cdn.jsdelivr.net/npm/@stilljs/core@latest/@still/ui/css/still.css
 ```
 </div>
 <h2>You're good to go! enjoy your coding.</h2>

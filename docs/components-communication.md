@@ -17,7 +17,7 @@ In order to provide ways from components to communicate to each other, Still.js 
 
 ### 1. Parent to child change Subscription using Proxy (Pub/Sub)
 
-State Subscription is a way for one Component to listen to another component State changes by subcribing to it. follow the example:
+State Subscription is a way for one Component to listen to another component State changes by subcribing to it. The <b>`route.map.js`</b> file contains the mapping on where every component resides. follow the example:
 
 === "BiddingDisplay.js"
 	```js title="This is the parent component" hl_lines="8-9 12-16 24-29" linenums="1"
@@ -96,6 +96,29 @@ State Subscription is a way for one Component to listen to another component Sta
 
 	```
 
+=== "route.map.js"
+	```js title="" linenums="1"
+    export const stillRoutesMap = {
+        viewRoutes: {
+            regular: {
+                BiddingDisplay: {
+                    path: "app/components/communication",
+                    url: "/bid/display"
+                },
+                BidOffersComponent: {
+                    path: "app/components/communication",
+                    url: "/bid/offer"
+                },
+                BiddersList: {
+                    path: "app/components/communication",
+                    url: "/bid/bidder"
+                }
+            },
+            lazyInitial: {}
+        }
+    }
+	```
+
 === ":octicons-project-roadmap-16: Project folder structure"
 	```js title="Project folder structure"
     project-root-folder
@@ -131,11 +154,11 @@ State Subscription is a way for one Component to listen to another component Sta
 
 ### 2. Adjacent (sibling) components reactive communication using Reference (Pub/Sub)
 
-State Subscription is a way for one Component to listen to another component State changes by subcribing to it. follow the example:
+State Subscription is a way for one Component to listen to another component State changes by subcribing to it. The <b>`route.map.js`</b> file contains the mapping on where every component resides, follow the example:
 
 === "BiddingDisplay.js"
 	```js title="This is the parent component" hl_lines="8-12" linenums="1"
-	import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
+	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
     export class BiddingDisplay extends ViewComponent {
 
@@ -155,7 +178,7 @@ State Subscription is a way for one Component to listen to another component Sta
 
 === "BidOffersComponent.js"
 	```js title="This child component has a ref stated in the parent" hl_lines="15-17 6 9" linenums="1"
-	import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
+	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
     export class BidOffersComponent extends ViewComponent {
 
@@ -178,7 +201,7 @@ State Subscription is a way for one Component to listen to another component Sta
 
 === "BiddersList.js"
 	```js title="This child component access his sibling through the reference" linenums="1" hl_lines="8-9 13 20-23 27-34"
-	import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
+	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 	import { BidOffersComponent } from "./BidOffersComponent.js";
 
     export class BiddersList extends ViewComponent {
@@ -217,6 +240,29 @@ State Subscription is a way for one Component to listen to another component Sta
 
 	```
 
+=== "route.map.js"
+	```js title="" linenums="1"
+    export const stillRoutesMap = {
+        viewRoutes: {
+            regular: {
+                BiddingDisplay: {
+                    path: "app/components/communication",
+                    url: "/bid/display"
+                },
+                BidOffersComponent: {
+                    path: "app/components/communication",
+                    url: "/bid/offer"
+                },
+                BiddersList: {
+                    path: "app/components/communication",
+                    url: "/bid/bidder"
+                }
+            },
+            lazyInitial: {}
+        }
+    }
+	```
+
 
 === ":octicons-project-roadmap-16: Project folder structure"
 	```js title="Project folder structure"
@@ -247,11 +293,11 @@ State Subscription is a way for one Component to listen to another component Sta
 
 ### 3. Global state management Reactively - Components communication with Service
 
-Services is another way of providing component communication capabilities, in this case, the service is not tied to any component, which means that state will remain even if some component was unloaded, follow the code example:
+Services is another way of providing component communication capabilities, in this case, the service is not tied to any component, which means that state will remain even if some component was unloaded. The <b>`route.map.js`</b> file contains the mapping on where every component resides, follow the code example:
 
 === "BiddingDisplay.js"
 	```js title="This is the parent component" hl_lines="2 10-12 27-32" linenums="1"
-	import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
+	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
     import { BiddingService } from "../../service/BiddingService.js";
 
     export class BiddingDisplay extends ViewComponent {
@@ -291,7 +337,7 @@ Services is another way of providing component communication capabilities, in th
 
 === "BidOffersComponent.js"
 	```js title="This child component has a ref stated in the parent" hl_lines="2 8-9 13 18 22 25" linenums="1"
-	import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
+	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
     import { BiddingService } from "../../service/BiddingService.js";
 
     export class BidOffersComponent extends ViewComponent {
@@ -323,7 +369,7 @@ Services is another way of providing component communication capabilities, in th
 
 === "BiddersList.js"
 	```js title="This child component access his sibling through the reference" linenums="1" hl_lines="9-11 24 30-31 34"
-	import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
+	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
     import { BiddingService } from '../../service/BiddingService.js';
 
     export class BiddersList extends ViewComponent {
@@ -346,17 +392,17 @@ Services is another way of providing component communication capabilities, in th
 
         addMoreCountry() {
             /** Retrieve and log the current/initial state */
-            const countryState = this.biddingService.countryStore.value;
+            const countryState = this.bService.countryStore.value;
             console.log(`----> Country Store before updating: `, countryState);
 
             /** Get the next country from the  */
             const newCountry = this.countriesList[countryState.length - 1];
             /** Updating the store and re-assigning it to the service */
             countryState.push(newCountry);
-            this.biddingService.countryStore = countryState;
+            this.bService.countryStore = countryState;
 
             /** Retrieve and log the state after update from store */
-            const updatedCountryState = this.biddingService.countryStore.value;
+            const updatedCountryState = this.bService.countryStore.value;
             console.log(`----> Country Store after updating: `, updatedCountryState);
         }
     }
@@ -399,6 +445,30 @@ Services is another way of providing component communication capabilities, in th
     }
 	```
 
+=== "route.map.js"
+	```js title="" linenums="1"
+    export const stillRoutesMap = {
+        viewRoutes: {
+            regular: {
+                BiddingDisplay: {
+                    path: "app/components/communication",
+                    url: "/bid/display"
+                },
+                BidOffersComponent: {
+                    path: "app/components/communication",
+                    url: "/bid/offer"
+                },
+                BiddersList: {
+                    path: "app/components/communication",
+                    url: "/bid/bidder"
+                }
+            },
+            lazyInitial: {}
+        }
+    }
+	```
+
+
 === ":octicons-project-roadmap-16: Project folder structure"
 	```js title="Project folder structure"
     project-root-folder
@@ -432,13 +502,13 @@ Services is another way of providing component communication capabilities, in th
 
 #### 3.1. Defining Service path using @ServicePath annotation
 
-For the sake of peculiar kind of organization of project structure, Still.js provides with @ServicePath annotation which allow for specification of the folder path in which the injecting service is located:
+For the sake of peculiar kind of organization of project structure, Still.js provides with @ServicePath annotation which allow for specification of the folder path in which the injecting service is located. The <b>`route.map.js`</b> file contains the mapping on where every component resides:
 
 === "BiddingDisplay.js"
 	```js title="This is the parent component which subscribe to the service store" hl_lines="10-13 22-27" linenums="1"
-	import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
-
+	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
     import { CustomersService } from "../../service/api/CustomersService.js";
+
     export class BiddingDisplay extends ViewComponent {
 
         isPublic = true;
@@ -471,7 +541,7 @@ For the sake of peculiar kind of organization of project structure, Still.js pro
 
 === "BiddersList.js"
 	```js title="This is the parent component which subscribe to the service store" hl_lines="2 10-13 17 21 23" linenums="1"
-	import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
+	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
     import { CustomersService } from '../../service/api/CustomersService.js'
 
     export class BiddersList extends ViewComponent {
@@ -505,6 +575,30 @@ For the sake of peculiar kind of organization of project structure, Still.js pro
 
         totalCustomers = new ServiceEvent(0);
 
+    }
+	```
+
+
+=== "route.map.js"
+	```js title="" linenums="1"
+    export const stillRoutesMap = {
+        viewRoutes: {
+            regular: {
+                BiddingDisplay: {
+                    path: "app/components/communication",
+                    url: "/bid/display"
+                },
+                BidOffersComponent: {
+                    path: "app/components/communication",
+                    url: "/bid/offer"
+                },
+                BiddersList: {
+                    path: "app/components/communication",
+                    url: "/bid/bidder"
+                }
+            },
+            lazyInitial: {}
+        }
     }
 	```
 
