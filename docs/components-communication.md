@@ -222,7 +222,7 @@ State Subscription is a way for one Component to listen to another component Sta
             // stWhenReady() Hook detects when the sibling component is available
             this.stWhenReady(() => {
                 // Assigning the sibling instance to the property
-                this.bidOfferInstance = Components.getFromRef('BidOffersDisplayRef');
+                this.bidOfferInstance = Components.ref('BidOffersDisplayRef');
             });
 
         }
