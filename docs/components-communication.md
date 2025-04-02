@@ -122,17 +122,18 @@ State Subscription is a way for one Component to listen to another component Sta
 === ":octicons-project-roadmap-16: Project folder structure"
 	```js title="Project folder structure"
     project-root-folder
-    |___@still
-    |___app
+    |__ @still/
+    |__ app/
     |    |
-    |    |__components
-    |    |   |__bidding
-    |    |   |   |__BiddingDisplay.js
-    |    |   |   |__BidOffersComponent.js
-    |    |   |   |__BiddersList.js
+    |    |__ components/
+    |    |   |__ bidding/
+    |    |   |   |__ bidding/Display.js
+    |    |   |   |__ BidOffersComponent.js
+    |    |   |   |__ BiddersList.js
     |    |   |   |
-    |__app-setup.js
-    |__ ...
+    |__ app/-setup.js
+    |__ route.map.js
+    |__  ...
 
 	```
 
@@ -267,17 +268,18 @@ State Subscription is a way for one Component to listen to another component Sta
 === ":octicons-project-roadmap-16: Project folder structure"
 	```js title="Project folder structure"
     project-root-folder
-    |___@still
-    |___app
+    |__ @still/
+    |__ app/
     |    |
-    |    |__components
-    |    |   |__bidding
-    |    |   |   |__BiddingDisplay.js
-    |    |   |   |__BidOffersComponent.js
-    |    |   |   |__BiddersList.js
+    |    |__ components/
+    |    |   |__ bidding/
+    |    |   |   |__ bidding/Display.js
+    |    |   |   |__ BidOffersComponent.js
+    |    |   |   |__ BiddersList.js
     |    |   |   |
-    |__app-setup.js
-    |__ ...
+    |__ app/-setup.js
+    |__ route.map.js
+    |__  ...
 
 	```
 
@@ -472,20 +474,21 @@ Services is another way of providing component communication capabilities, in th
 === ":octicons-project-roadmap-16: Project folder structure"
 	```js title="Project folder structure"
     project-root-folder
-    |___@still
-    |___app
+    |__ @still/
+    |__ app/
     |    |
-    |    |__components
-    |    |   |__bidding
-    |    |   |   |__BiddingDisplay.js
-    |    |   |   |__BidOffersComponent.js
-    |    |   |   |__BiddersList
+    |    |__ components/
+    |    |   |__ bidding/
+    |    |   |   |__ bidding/Display.js
+    |    |   |   |__ BidOffersComponent.js
+    |    |   |   |__ BiddersList
     |    |   |   |
-    |    |__service
-    |    |   |__BiddingService.js
+    |    |__ service/
+    |    |   |__ bidding/Service.js
     |    |   |
-    |__app-setup.js
-    |__ ...
+    |__ app/-setup.js
+    |__ route.map.js
+    |__  ...
 
 	```
 
@@ -606,20 +609,21 @@ For the sake of peculiar kind of organization of project structure, Still.js pro
 === ":octicons-project-roadmap-16: Project folder structure"
 	```js title="Project folder structure"
     project-root-folder
-    |___@still
-    |___app
+    |__ @still/
+    |__ app/
     |    |
-    |    |__components
-    |    |   |__bidding
-    |    |   |   |__BiddingDisplay.js
-    |    |   |   |__BiddersList.js
+    |    |__ DIRcomponents
+    |    |   |__ bidding/
+    |    |   |   |__ bidding/Display.js
+    |    |   |   |__ BiddersList.js
     |    |   |   |
-    |    |__service
-    |    |   |__api
-    |    |   |   |__CustomersService.js
+    |    |__ service/
+    |    |   |__ api
+    |    |   |   |__ CustomersService.js
     |    |   |   |
-    |__app-setup.js
-    |__ ...
+    |__ app/-setup.js
+    |__ route.map.js
+    |__  ...
 
 	```
 
