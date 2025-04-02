@@ -1,6 +1,6 @@
 ### Using CDN For Lone Component and/or Microfrontend
 <hr/>
-In the CND mode, instead of the whole folder structure, only the `app` folder and `router.map.js` file are needed, also, we need to set the path where they'll be placeed by using the `STILL_HOME` variable, follow the folder structure example as well as coding sample right after:
+In the CND mode, instead of the whole folder structure, only the `app` folder and `route.map.js` file are needed, also, we need to set the path where they'll be placeed by using the `STILL_HOME` variable, follow the folder structure example as well as coding sample right after:
 
 
 <a name="project-structure"></a>
