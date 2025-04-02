@@ -127,7 +127,7 @@ State Subscription is a way for one Component to listen to another component Sta
     |    |
     |    |__ components/
     |    |   |__ bidding/
-    |    |   |   |__ bidding/Display.js
+    |    |   |   |__ BiddingDisplay.js
     |    |   |   |__ BidOffersComponent.js
     |    |   |   |__ BiddersList.js
     |    |   |   |
@@ -273,7 +273,7 @@ State Subscription is a way for one Component to listen to another component Sta
     |    |
     |    |__ components/
     |    |   |__ bidding/
-    |    |   |   |__ bidding/Display.js
+    |    |   |   |__ BiddingDisplay.js
     |    |   |   |__ BidOffersComponent.js
     |    |   |   |__ BiddersList.js
     |    |   |   |
@@ -479,7 +479,7 @@ Services is another way of providing component communication capabilities, in th
     |    |
     |    |__ components/
     |    |   |__ bidding/
-    |    |   |   |__ bidding/Display.js
+    |    |   |   |__ BiddingDisplay.js
     |    |   |   |__ BidOffersComponent.js
     |    |   |   |__ BiddersList
     |    |   |   |
@@ -614,7 +614,7 @@ For the sake of peculiar kind of organization of project structure, Still.js pro
     |    |
     |    |__ DIRcomponents
     |    |   |__ bidding/
-    |    |   |   |__ bidding/Display.js
+    |    |   |   |__ BiddingDisplay.js
     |    |   |   |__ BiddersList.js
     |    |   |   |
     |    |__ service/
