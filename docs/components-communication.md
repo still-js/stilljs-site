@@ -102,15 +102,15 @@ State Subscription is a way for one Component to listen to another component Sta
         viewRoutes: {
             regular: {
                 BiddingDisplay: {
-                    path: "app/components/communication",
+                    path: "app/components/bidding",
                     url: "/bid/display"
                 },
                 BidOffersComponent: {
-                    path: "app/components/communication",
+                    path: "app/components/bidding",
                     url: "/bid/offer"
                 },
                 BiddersList: {
-                    path: "app/components/communication",
+                    path: "app/components/bidding",
                     url: "/bid/bidder"
                 }
             },
@@ -246,15 +246,15 @@ State Subscription is a way for one Component to listen to another component Sta
         viewRoutes: {
             regular: {
                 BiddingDisplay: {
-                    path: "app/components/communication",
+                    path: "app/components/bidding",
                     url: "/bid/display"
                 },
                 BidOffersComponent: {
-                    path: "app/components/communication",
+                    path: "app/components/bidding",
                     url: "/bid/offer"
                 },
                 BiddersList: {
-                    path: "app/components/communication",
+                    path: "app/components/bidding",
                     url: "/bid/bidder"
                 }
             },
@@ -451,15 +451,15 @@ Services is another way of providing component communication capabilities, in th
         viewRoutes: {
             regular: {
                 BiddingDisplay: {
-                    path: "app/components/communication",
+                    path: "app/components/bidding",
                     url: "/bid/display"
                 },
                 BidOffersComponent: {
-                    path: "app/components/communication",
+                    path: "app/components/bidding",
                     url: "/bid/offer"
                 },
                 BiddersList: {
-                    path: "app/components/communication",
+                    path: "app/components/bidding",
                     url: "/bid/bidder"
                 }
             },
@@ -585,15 +585,15 @@ For the sake of peculiar kind of organization of project structure, Still.js pro
         viewRoutes: {
             regular: {
                 BiddingDisplay: {
-                    path: "app/components/communication",
+                    path: "app/components/bidding",
                     url: "/bid/display"
                 },
                 BidOffersComponent: {
-                    path: "app/components/communication",
+                    path: "app/components/bidding",
                     url: "/bid/offer"
                 },
                 BiddersList: {
-                    path: "app/components/communication",
+                    path: "app/components/bidding",
                     url: "/bid/bidder"
                 }
             },
