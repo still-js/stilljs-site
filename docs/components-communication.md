@@ -157,7 +157,7 @@ State Subscription is a way for one Component to listen to another component Sta
     |    |   |   |__ BidOffersComponent.js
     |    |   |   |__ BiddersList.js
     |    |   |   |
-    |__ app/-setup.js
+    |__ app-setup.js
     |__ route.map.js
     |__  ...
 
@@ -303,7 +303,7 @@ State Subscription is a way for one Component to listen to another component Sta
     |    |   |   |__ BidOffersComponent.js
     |    |   |   |__ BiddersList.js
     |    |   |   |
-    |__ app/-setup.js
+    |__ app-setup.js
     |__ route.map.js
     |__  ...
 
@@ -512,7 +512,7 @@ Services is another way of providing component communication capabilities, in th
     |    |__ service/
     |    |   |__ bidding/Service.js
     |    |   |
-    |__ app/-setup.js
+    |__ app-setup.js
     |__ route.map.js
     |__  ...
 
@@ -647,7 +647,7 @@ For the sake of peculiar kind of organization of project structure, Still.js pro
     |    |   |__ api
     |    |   |   |__ CustomersService.js
     |    |   |   |
-    |__ app/-setup.js
+    |__ app-setup.js
     |__ route.map.js
     |__  ...
 
