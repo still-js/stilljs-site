@@ -13,6 +13,32 @@
 
 In order to provide ways from components to communicate to each other, Still.js provade with different options thereby covering all scenarios such as Parent to child, Sibling to Sibling, any component to any other(s), follow the documentation.
 
+#### Initial Setup
+ - Throughout these tutorials/examples the StillAppSetup (`app-setup.js`) will be as follow:
+
+=== "app-setup.js"
+	```js title="This is the where Application context aspects are setup. This file is in the root folder. " hl_lines="11 15-17" linenums="1"
+    import { StillAppMixin } from "./@still/component/super/AppMixin.js";
+    import { Components } from "./@still/setup/components.js";
+    import { AppTemplate } from "./app-template.js";
+    import { BiddingDisplay } from "./app/components/bidding/BiddingDisplay.js";
+
+    export class StillAppSetup extends StillAppMixin(Components) {
+
+        constructor() {
+            super();
+            //First component to load when running the app
+            this.setHomeComponent(BiddingDisplay);
+        }
+
+        /** Launch the components in the App container */
+        async init() {
+            return await AppTemplate.newApp();
+        }
+    }
+
+	```
+<br>
 <a name="proxy-example"></a>
 
 ### 1. Parent to child change Subscription using Proxy (Pub/Sub)
