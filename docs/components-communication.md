@@ -17,7 +17,7 @@ In order to provide ways from components to communicate to each other, Still.js 
  - Throughout these tutorials/examples the StillAppSetup (`app-setup.js`) will be as follow:
 
 === "app-setup.js"
-	```js title="This is the where Application context aspects are setup. This file is in the root folder. " hl_lines="11 15-17" linenums="1"
+	```js title="This is the where Application context aspects are setup. This file is in the root folder. " hl_lines="11 17-19 13" linenums="1"
     import { StillAppMixin } from "./@still/component/super/AppMixin.js";
     import { Components } from "./@still/setup/components.js";
     import { AppTemplate } from "./app-template.js";
@@ -29,6 +29,8 @@ In order to provide ways from components to communicate to each other, Still.js 
             super();
             //First component to load when running the app
             this.setHomeComponent(BiddingDisplay);
+            //Set the service folder path (takes place only for service injection)
+            this.servicePath = 'service/';
         }
 
         /** Launch the components in the App container */
