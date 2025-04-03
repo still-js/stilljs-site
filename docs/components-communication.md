@@ -13,11 +13,13 @@
 
 In order to provide ways from components to communicate to each other, Still.js provade with different options thereby covering all scenarios such as Parent to child, Sibling to Sibling, any component to any other(s), follow the documentation.
 
+<a name="initial-setup"></a>
+
 #### Initial Setup
  - Throughout these tutorials/examples the StillAppSetup (`app-setup.js`) will be as follow:
 
 === "app-setup.js"
-	```js title="This is the where Application context aspects are setup. This file is in the root folder. " hl_lines="11 17-19 13" linenums="1"
+	```js title="This is the where Application context aspects are setup. This file resides in the root folder. " hl_lines="11 17-19 13" linenums="1"
     import { StillAppMixin } from "./@still/component/super/AppMixin.js";
     import { Components } from "./@still/setup/components.js";
     import { AppTemplate } from "./app-template.js";
@@ -29,7 +31,7 @@ In order to provide ways from components to communicate to each other, Still.js 
             super();
             //First component to load when running the app
             this.setHomeComponent(BiddingDisplay);
-            //Set the service folder path (takes place only for service injection)
+            //Set the service folder path (takes place only for service injection like point 3)
             this.servicePath = 'service/';
         }
 
@@ -45,7 +47,10 @@ In order to provide ways from components to communicate to each other, Still.js 
 
 ### 1. Parent to child change Subscription using Proxy (Pub/Sub)
 
-State Subscription is a way for one Component to listen to another component State changes by subcribing to it. The <b>`route.map.js`</b> file contains the mapping on where every component resides. follow the example:
+Refer to <b><a href="#initial-setup">StillAppSetup above example</a></b> to view how the first component to load is set.
+<br>
+<br>
+State Subscription is a way for one Component to listen to another component State changes by subcribing to it. The `route.map.js` file maps components location. Follow the example:
 
 === "BiddingDisplay.js"
 	```js title="This is the parent component" hl_lines="8-9 12-16 24-29" linenums="1"
@@ -183,7 +188,10 @@ State Subscription is a way for one Component to listen to another component Sta
 
 ### 2. Adjacent (sibling) components reactive communication using Reference (Pub/Sub)
 
-State Subscription is a way for one Component to listen to another component State changes by subcribing to it. The <b>`route.map.js`</b> file contains the mapping on where every component resides, follow the example:
+Refer to <b><a href="#initial-setup">StillAppSetup above example</a></b> to view how the first component to load is set.
+<br>
+
+State Subscription is a way for one Component to listen to another component State changes by subcribing to it. The `route.map.js` file maps components location. Follow the example:
 
 === "BiddingDisplay.js"
 	```js title="This is the parent component" hl_lines="8-12" linenums="1"
@@ -323,7 +331,10 @@ State Subscription is a way for one Component to listen to another component Sta
 
 ### 3. Global state management Reactively - Components communication with Service
 
-Services is another way of providing component communication capabilities, in this case, the service is not tied to any component, which means that state will remain even if some component was unloaded. The <b>`route.map.js`</b> file contains the mapping on where every component resides, follow the code example:
+Refer to <b><a href="#initial-setup">StillAppSetup above example</a></b> to view how the first component to load is set.
+<br>
+
+Services enable component communication without being tied to a specific component, ensuring state persistence even after a component is unloaded. The `route.map.js` file maps components location, follow the code example:
 
 === "BiddingDisplay.js"
 	```js title="This is the parent component" hl_lines="2 10-12 27-32" linenums="1"
@@ -452,28 +463,6 @@ Services is another way of providing component communication capabilities, in th
 
 	```
 
-=== "app-setup.js"
-	```js title="Definition of the service folder" linenums="1" hl_lines="11"
-    import { StillAppMixin } from "./@still/component/super/AppMixin.js";
-    import { Components } from "./@still/setup/components.js";
-    import { AppTemplate } from "./app-template.js";
-    import { HomeComponent } from "./app/home/HomeComponent.js";
-
-    export class StillAppSetup extends StillAppMixin(Components) {
-
-        constructor() {
-            super();
-            this.setHomeComponent(HomeComponent);
-            //service is the name of the folder where services will be placed
-            this.setServicePath('service/')
-        }
-
-        async init() {
-            return await AppTemplate.newApp();
-        }
-
-    }
-	```
 
 === "route.map.js"
 	```js title="" linenums="1"
@@ -533,7 +522,10 @@ Services is another way of providing component communication capabilities, in th
 
 #### 3.1. Defining Service path using @ServicePath annotation
 
-For the sake of peculiar kind of organization of project structure, Still.js provides with @ServicePath annotation which allow for specification of the folder path in which the injecting service is located. The <b>`route.map.js`</b> file contains the mapping on where every component resides:
+Refer to <b><a href="#initial-setup">StillAppSetup above example</a></b> to view how the first component to load is set.
+<br>
+
+Still.js offers the <b>`@ServicePath`</b> annotation to specify the folder path of an injecting service, ensuring a more granular project structured organization. The `route.map.js` file maps component locations. Follow the example:
 
 === "BiddingDisplay.js"
 	```js title="This is the parent component which subscribe to the service store" hl_lines="10-13 22-27" linenums="1"

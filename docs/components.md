@@ -9,19 +9,71 @@
 <br/>
 
 ### Overview
-- In Still.js Component is a way of handling just anything that results in a UI out put, can be a whole page/UI, a widget, an autonomos application part (e.g. Form, Grid, Datatable, Button, etc.), or even whole application (Micro-Fronted which can be put inside a regular page or HTML), plus, it can be resuable and navegable (in case of UI/page components).
+- In Still.js, a Component represents any UI output, from a full application to a widget or a microfrontend. Components can be reusable, navigable (for UI/pages), and embedded within other applications.
 
-- The component anatomy normally consider 2 required aspects, first it has to extend from ViewComponent and second it has to define the template variable which will be used to render the visual part of it, in some situations, a third aspect is to be taken into consideration which is the constructor definition (in case there is something we want to run when starting running the component) which in turn requires the super() method from parent class (.e.g ViewComponent, BaseService) to be called inside.
+- A component must extend <b>`ViewComponent`</b> and define a <b>`template`</b> for rendering. If initialization logic is needed, a Special methods (lifecycle/Hook) can be implemented, if constructor is in place <b>`super()`</b> needs to be called as first line.
 
-Since Still.js is based on Vanilla Web Technologies (HTML, CSS and JavaSCript) the content of the template variable will naturally be pure HTML, a defined WebComponent, a set of <st-element> or a combination of any or all of them.
+- For proper localization/routing, both <b>Path</b> and <b>URL</b> must be defined in <b>`route.map.js`</b>. However, this is handled automatically when creating components via <b>still-cli</b> (<a href="#component-creation">check bellow</a>). The <b>`app-setup.js`</b> manages application-level configurations, but for these tutorials we'll be touching it just to set the initial component we want to be loaded.
+
+In Still.js, the template variable contains pure HTML, a defined WebComponent, &lt;st-element> tags, or a combination of these, as it is based on vanilla web technologies (HTML, CSS, and JavaScript).
 
 
 
 ### 1. Simple example
 
+=== ":octicons-project-roadmap-16: Project folder structure"
+	```js title="Project folder structure"
+    project-root-folder
+    |__ @still/
+    |__ app/
+    |    |
+    |    |__ home/
+    |    |   |__ HomeComponent.js
+    |    |   |   |
+    |__ app-setup.js
+    |__ route.map.js
+    |__  ...
+
+	```
+
+=== "app-setup.js"
+	```js title="This is the where Application context aspects are setup. This file is in the root folder. " hl_lines="11 16" linenums="1"
+	import { StillAppMixin } from "./@still/component/super/AppMixin.js";
+	import { Components } from "./@still/setup/components.js";
+	import { AppTemplate } from "./app-template.js";
+	import { HomeComponent } from "./app/home/HomeComponent.js";
+
+	export class StillAppSetup extends StillAppMixin(Components) {
+
+		constructor() {
+			super();
+			//Defines the first component to load
+			this.setHomeComponent(HomeComponent);
+		}
+
+		async init() {
+			//Loads the app container and the initial component set at line 11
+			return await AppTemplate.newApp();
+		}
+
+	}
+	```
+
+=== "route.map.js"
+	```js title="Routes will be added and manage automatically from here when creating the component using still-cli" hl_lines="11 16" linenums="1"
+	export const stillRoutesMap = {
+		viewRoutes: {
+			regular: {
+				HomeComponent: { path: "app/home", url: "/HomeComponent" }
+			},
+			lazyInitial: {}
+		}
+	}
+	```
+
 === "HomeComponent.js"
 
-    ```js title="HomeComponent.js" linenums="1" hl_lines="12 19-21"
+    ```js title="HomeComponent.js" linenums="1" hl_lines="3-17"
     import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
 
     export class HomeComponent extends ViewComponent {
@@ -33,7 +85,7 @@ Since Still.js is based on Vanilla Web Technologies (HTML, CSS and JavaSCript) t
 
         /**
          * constructor for still.js might be needed in very specific
-         * situations (e.g. for using whenReady hook)
+         * situations (e.g. for using whenReady() Hook)
         */
         constructor() {
             super();
@@ -41,8 +93,10 @@ Since Still.js is based on Vanilla Web Technologies (HTML, CSS and JavaSCript) t
     }
     ```
 
+
 Conceptually, all components extends from ViewComponent, and, behide the, therefore, such extending component can serve as a whole page or a simple part of a specific page.
 
+<a name="component-creation"></a>
 <br/>
 #### Component Creation
 
@@ -61,18 +115,70 @@ Conceptually, all components extends from ViewComponent, and, behide the, theref
 
 <br/>
 
-#### Component required variables (Reserved for the Framework)
+#### 1.1 Component required variables (Reserved for the Framework)
 
 - ***isPublic*** - This states if the component can be accessed without authentication or not.
 
 
-- ***template*** - Declares the UI itself by using differnt murkups (HTML, Still elements, Web-Component) and stilesheets (CSS). Not declaring it will make the component not to load.
+- ***template*** - Declares the UI itself by using differnt murkups (HTML, Still elements, Web-Component) and stylesheets (CSS). Not declaring it will make the component not to load.
 
 
 In adition to isPublic and template, there are other features which can be used inside the javaScript part of the component such as the special method/Hooks (see hooks section), follow an example:
 
-=== "Defining Properties and States"
-	```js title="UserForm.js" hl_lines="8-16" linenums="1"
+=== ":octicons-project-roadmap-16: Project folder structure"
+	```js title="Project folder structure"
+    project-root-folder
+    |__ @still/
+    |__ app/
+    |    |
+    |    |__ components/
+    |    |   |__ user/
+    |    |   |   |__ UserForm.js
+    |    |   |   |
+    |__ app-setup.js
+    |__ route.map.js
+    |__  ...
+
+	```
+
+=== "app-setup.js"
+	```js title="This is the where Application context aspects are setup. This file is in the root folder. " hl_lines="11 16" linenums="1"
+	import { StillAppMixin } from "./@still/component/super/AppMixin.js";
+	import { Components } from "./@still/setup/components.js";
+	import { AppTemplate } from "./app-template.js";
+	import { UserForm } from "./app/components/user/UserForm.js";
+
+	export class StillAppSetup extends StillAppMixin(Components) {
+
+		constructor() {
+			super();
+			//Defines the first component to load
+			this.setHomeComponent(UserForm);
+		}
+
+		async init() {
+			//Loads the app container and the initial component set at line 11
+			return await AppTemplate.newApp();
+		}
+
+	}
+	```
+
+=== "route.map.js"
+	```js title="Routes will be added and manage automatically from here when creating the component using still-cli" hl_lines="11 16" linenums="1"
+	export const stillRoutesMap = {
+		viewRoutes: {
+			regular: {
+				UserForm: { path: "app/components/user", url: "/user/create" }
+			},
+			lazyInitial: {}
+		}
+	}
+	```
+
+
+=== "UserForm.js"
+	```js title="Defining the template" hl_lines="8-16" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class UserForm extends ViewComponent {
@@ -102,8 +208,60 @@ The template (HTML) content will be display accordingly once the template as ren
 
 Those are 2 of the existing ways for the component to hold data, therefore, they serve different purpose, as State is reactive and takes affect on the component lifecycle, whereas Property does not. Follow the example:
 
-=== "Defining Properties and States"
-	```js title="UserForm.js" hl_lines="9-12 16-17 19-20 22 24-26 28-30 32-34" linenums="1"
+
+=== ":octicons-project-roadmap-16: Project folder structure"
+	```js title="Project folder structure"
+    project-root-folder
+    |__ @still/
+    |__ app/
+    |    |
+    |    |__ components/
+    |    |   |__ user/
+    |    |   |   |__ UserForm.js
+    |    |   |   |
+    |__ app-setup.js
+    |__ route.map.js
+    |__  ...
+
+	```
+
+=== "app-setup.js"
+	```js title="This is the where Application context aspects are setup. This file is in the root folder. " hl_lines="11 16" linenums="1"
+	import { StillAppMixin } from "./@still/component/super/AppMixin.js";
+	import { Components } from "./@still/setup/components.js";
+	import { AppTemplate } from "./app-template.js";
+	import { UserForm } from "./app/components/user/UserForm.js";
+
+	export class StillAppSetup extends StillAppMixin(Components) {
+
+		constructor() {
+			super();
+			//Defines the first component to load
+			this.setHomeComponent(UserForm);
+		}
+
+		async init() {
+			//Loads the app container and the initial component set at line 11
+			return await AppTemplate.newApp();
+		}
+
+	}
+	```
+
+=== "route.map.js"
+	```js title="Routes will be added and manage automatically from here when creating the component using still-cli" hl_lines="11 16" linenums="1"
+	export const stillRoutesMap = {
+		viewRoutes: {
+			regular: {
+				UserForm: { path: "app/components/user", url: "/user/create" }
+			},
+			lazyInitial: {}
+		}
+	}
+	```
+
+=== "UserForm.js"
+	```js title="Defining Properties and States" hl_lines="9-12 16-17 19-20 22 24-26 28-30 32-34" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class UserForm extends ViewComponent {
@@ -146,22 +304,22 @@ When it comes to retrieve the value from a property we need to reference the `.v
 
 To listen to a State change reactively, some ways are provided, but more recurrent are binding it to the template, and subscribing to it as follows in the side code snippets:
 
-=== "Listening to changes"
-	```js title="ButtonComponent.js" hl_lines="2-3 7-11" linenums="1"
-	
+
+```js title="Listening to changes" hl_lines="3-4 8-12"
+	// Via property binding in the template it automatically listen to changes reactively
 	template = `
 		<div>User Name: @firstName
 		<button> @saveButtonLabl </button>
-	`
+	`;
 
-	/** This is a Special method/Hook which can be declared in the component */
+	// This is a Special method/Hook which can be declared in the component
 	stAfterInit(){
 		this.firstName.onChange(newValue => {
 			console.log(`User first name changed to ${newValue}`);
 		});
 	}
 
-	```
+```
 A component can subscribe to itself just like any other component can as we see in the lines 8 to 10, therefore, a good place to declare subsription is in a Hook method like stAfterInit.
 
 
@@ -172,9 +330,70 @@ A component can subscribe to itself just like any other component can as we see 
 
 It's possible to put one component inside another, nevertheless, in order to guarantee the better performance, Still.js only allow 2 levels of nested component as follow:
 
+=== ":octicons-project-roadmap-16: Project folder structure"
+	```js title="Project folder structure"
+    project-root-folder
+    |__ @still/
+    |__ app/
+    |    |
+    |    |__ components/
+    |    |   |__ bidding/
+    |    |   |   |__ BiddingDisplay.js
+    |    |   |   |__ BidOffersComponent.js
+    |    |   |   |__ BiddersList.js
+    |    |   |   |
+    |__ app-setup.js
+    |__ route.map.js
+    |__  ...
 
-=== "Parent Component"
-	```js title="BiddingDisplay.js" hl_lines="12" linenums="1"
+	```
+
+=== "app-setup.js"
+	```js title="Definition of the service folder" linenums="1" hl_lines="10"
+    import { StillAppMixin } from "./@still/component/super/AppMixin.js";
+    import { Components } from "./@still/setup/components.js";
+    import { AppTemplate } from "./app-template.js";
+    import { BiddingDisplay } from "./app/components/bidding/BiddingDisplay.js";
+
+    export class StillAppSetup extends StillAppMixin(Components) {
+
+        constructor() {
+            super();
+            this.setHomeComponent(BiddingDisplay);
+        }
+
+        async init() {
+            return await AppTemplate.newApp();
+        }
+
+    }
+	```
+
+=== "route.map.js"
+	```js title="" linenums="1"
+    export const stillRoutesMap = {
+        viewRoutes: {
+            regular: {
+                BiddingDisplay: {
+                    path: "app/components/bidding",
+                    url: "/bid/display"
+                },
+                BidOffersComponent: {
+                    path: "app/components/bidding",
+                    url: "/bid/offer"
+                },
+                BiddersList: {
+                    path: "app/components/bidding",
+                    url: "/bid/bidder"
+                }
+            },
+            lazyInitial: {}
+        }
+    }
+	```
+
+=== "BiddingDisplay.js"
+	```js title="Parent Component" hl_lines="12" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class BiddingDisplay extends ViewComponent {
@@ -188,8 +407,8 @@ It's possible to put one component inside another, nevertheless, in order to gua
 	}
 	```
 
-=== "Child Component"
-	```js title="BidOffersComponent.js" hl_lines="12" linenums="1"
+=== "BidOffersComponent.js"
+	```js title="Child Component" hl_lines="12" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class BidOffersComponent extends ViewComponent {
@@ -203,8 +422,8 @@ It's possible to put one component inside another, nevertheless, in order to gua
 	}
 	```
 
-=== "Another Child Component"
-	```js title="BiddersList.js" linenums="1"
+=== "BiddersList.js"
+	```js title="Another Child Component" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class BiddersList extends ViewComponent {
@@ -231,15 +450,72 @@ Above we have to parent component, which has one level of offsprings, additional
 <a name="st-element-parent-child-communication"></a>
 ### 4. Component to Component communication
 
-Covering from the most basic to the most complex scenarios, Still.js provides wide different means of providing communication from component to component (e.g. Parent to child, Sibling to Sibling, any component to any other(s)). (see to the Component Communication for more details)
+Covering from the most basic to the most complex scenarios, Still.js provides wide different means of providing communication from component to component (e.g. Parent to child, Sibling to Sibling, any component to any other(s)). (see to the <a href="../components-communication">Component Communication for more details</a>)
 
 <br>
 
-##### Parent to Child
+#### 4.1 Parent to Child communication
 
 
-=== "Parent Component"
-	```js title="BiddingDisplay.js" hl_lines="10-11" linenums="1"
+=== ":octicons-project-roadmap-16: Project folder structure"
+	```js title="Project folder structure"
+    project-root-folder
+    |__ @still/
+    |__ app/
+    |    |
+    |    |__ components/
+    |    |   |__ bidding/
+    |    |   |   |__ BiddingDisplay.js
+    |    |   |   |__ BidOffersComponent.js
+    |    |   |   |
+    |__ app-setup.js
+    |__ route.map.js
+    |__  ...
+
+	```
+
+=== "app-setup.js"
+	```js title="" linenums="1" hl_lines="10"
+    import { StillAppMixin } from "./@still/component/super/AppMixin.js";
+    import { Components } from "./@still/setup/components.js";
+    import { AppTemplate } from "./app-template.js";
+    import { BiddingDisplay } from "./app/components/bidding/BiddingDisplay.js";
+
+    export class StillAppSetup extends StillAppMixin(Components) {
+
+        constructor() {
+            super();
+            this.setHomeComponent(BiddingDisplay);
+        }
+
+        async init() {
+            return await AppTemplate.newApp();
+        }
+
+    }
+	```
+
+=== "route.map.js"
+	```js title="" linenums="1"
+    export const stillRoutesMap = {
+        viewRoutes: {
+            regular: {
+                BiddingDisplay: {
+                    path: "app/components/bidding",
+                    url: "/bid/display"
+                },
+                BidOffersComponent: {
+                    path: "app/components/bidding",
+                    url: "/bid/offer"
+                },
+            },
+            lazyInitial: {}
+        }
+    }
+	```
+
+=== "BiddingDisplay.js"
+	```js title="Parent Component" hl_lines="10-11" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class BiddingDisplay extends ViewComponent {
@@ -256,8 +532,8 @@ Covering from the most basic to the most complex scenarios, Still.js provides wi
 	}
 	```
 
-=== "Child Component"
-	```js title="BidOffersComponent.js" hl_lines="11-12 7-8" linenums="1"
+=== "BidOffersComponent.js"
+	```js title="Child Component called inside BiddingDisplay" hl_lines="11-12 7-8" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class BidOffersComponent extends ViewComponent {
@@ -283,8 +559,8 @@ when referencing the child, those are states variables in the child whichwill be
 
 Just like it's possible to update child state by passing if as property in `<st-element>` tag, we can also pass method as follow:
 
-=== "Parent Component"
-	```js title="BiddingDisplay.js" hl_lines="12 16-18" linenums="1"
+=== "BiddingDisplay.js"
+	```js title="Parent Component" hl_lines="12 16-18" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class BiddingDisplay extends ViewComponent {
@@ -306,8 +582,8 @@ Just like it's possible to update child state by passing if as property in `<st-
 	}
 	```
 
-=== "Child Component"
-	```js title="BidOffersComponent.js" hl_lines="13 17" linenums="1"
+=== "BidOffersComponent.js"
+	```js title="Child Component" hl_lines="13 17" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class BidOffersComponent extends ViewComponent {
@@ -333,8 +609,8 @@ Unlike state and property variables, method on the `<st-element>` component need
 
 It's also possible for the child to pass values to parent when executing method signature, follow the example:
 
-=== "Parent Component"
-	```js title="BiddingDisplay.js" hl_lines="13-15 9" linenums="1"
+=== "BiddingDisplay.js"
+	```js title="Parent Component" hl_lines="13-15 9" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class BiddingDisplay extends ViewComponent {
@@ -353,8 +629,8 @@ It's also possible for the child to pass values to parent when executing method 
 	}
 	```
 
-=== "Child Component"
-	```js title="BidOffersComponent.js" hl_lines="8 13" linenums="1"
+=== "BidOffersComponent.js"
+	```js title="Child Component" hl_lines="8 13" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class BidOffersComponent extends ViewComponent {
@@ -376,7 +652,7 @@ In addition to using `<st-element>` component props, there are other means avail
 <br>
 
 
-!!! Note "Embieding component in you regular HTML or within other Frameworks"
+!!! Note "Embieding component in your regular HTML or within other Frameworks"
 
     When it comes to components, Still.js provides the Lone Component which only require to reference the CDN for both CSS and JavaScript files thereby not needing to create a Still.js project, therefore, this approach can be followed either for small use case as well as for complex ones such as Microfrontend. (follow do documentation here)
 
