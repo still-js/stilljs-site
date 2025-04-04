@@ -131,7 +131,7 @@ Private components in Still.js help manage user authorization for navigation and
 
     ```
 
-In the example above, the NewAccountForm component includes buttons to navigate to private components, causing an Unauthorized access warning. To enable authorized navigation, two methods can be used:
+In the example above, the NewAccountForm component includes buttons to navigate to private components, causing an <b>`Unauthorized acces`</b> warning and not rendering the component. To allow navigation two approaches can be used separately or in combination:
 
 - ***setAuthN*** - For the Application context, when the AuthN is set to true, it understand that navigation and component embeding can happen at all level, anyway, there might be some exception which cannot be addressed here.
 
