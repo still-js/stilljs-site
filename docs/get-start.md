@@ -223,6 +223,7 @@ Run result:
 
 <br>
 
+<a name="render-if-ex1"></a>
 ###  Conditional rendering and Conditional Hide/Unhide
 
 By creating a variable annotated with @Prop (using JSDoc approach) we can then use this as flags (or any other application flow value) thereby being possible to assigne it on the Still.js directive, in this case to render or not, or hide/unhide (renderIf) and (showIf) notations are provided respectively.
