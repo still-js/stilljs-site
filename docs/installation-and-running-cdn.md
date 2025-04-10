@@ -28,7 +28,7 @@ my-project-name
 
 
 <br/>
-
+<a name="cdn-basic-code-sample"></a>
 #### 2. Basic code sample
 
 === "index.html"
@@ -38,8 +38,8 @@ my-project-name
     <html lang="en">
         <head>
             <script> STILL_HOME = 'microfronteds/still/' </script>
-            <link href="https://cdn.jsdelivr.net/npm/@stilljs/core@0.0.8/@still/ui/css/stillcss" rel="stylesheet">
-            <script src="https://cdn.jsdelivr.net/npm/@stilljs/core@0.0.8/@still/lone.js"type="module"></script>
+            <link href="https://cdn.jsdelivr.net/npm/@stilljs/core@latest/@still/ui/css/still.css" rel="stylesheet">
+            <script src="https://cdn.jsdelivr.net/npm/@stilljs/core@latest/@still/lone.js"type="module"></script>
         </head>
         <body>
             <st-element component="CounterComponent"></st-element>
