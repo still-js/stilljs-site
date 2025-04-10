@@ -2,24 +2,36 @@
 <hr/>
 In the CND mode, instead of the whole folder structure, only the `app` folder and `route.map.js` file are needed, also, we need to set the path where they'll be placeed by using the `STILL_HOME` variable, follow the folder structure example as well as coding sample right after:
 
+<br>
 
 <a name="project-structure"></a>
 
 
 #### 1. Folder Structure
+
+First thing first, Still.js CDN based project are also named Lone component, and it's recommender for them to be create using <b>`still-cli`</b> in addition to add to CDN in the page file itself (e.g. <b>.html</b>), as both the <b>`app/`</b> folder and the <b>`route.map.js`</b> file are needed even in this case, but the framework will be served from the CDN itself, hence, project structure can be as follow:
+<br>
+
 === "Folder structure in CDN mode"
 ```js hl_lines="3-7"
 my-project-name
 |
 |_ microfronteds
-   |_ still
-      |_ app
-      |  |_ components
-      |_ route.map.js
-   |_ another-mf-provider
+|  |_ still
+|  |  |_ app
+|  |  |  |_ components
+|  |  |_ route.map.js
+|  |_ another-mf-provider
+|_ index.html
 
 ```
 
+
+##### a. Creating Lone/CDN based project:
+Creating the project inside the `microfrontend/sill/` folder:
+```
+npx still lone
+```
 
 
 !!! info "Project folder substructure considerations"
@@ -74,9 +86,10 @@ my-project-name
 	```
 
 === "route.map.js"
-	```js linenums="1" hl_lines="7"
+	```js linenums="1" hl_lines="8"
     /** 
-     * This file will be placed in the root of app folder
+     * This file will be placed in the same level as app/ folder, 
+     * and both are inside the still folder
      * */
     export const stillRoutesMap = {
         viewRoutes: {

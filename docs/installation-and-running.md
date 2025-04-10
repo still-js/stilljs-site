@@ -18,12 +18,12 @@ Once installed, still-cli can be invoked from the terminal by typing `npx still`
 <br>
 
 #### 2. Creating a project
-
+Create a folder for you project (e.g. project-name) and from inside such folder init the project as the bellow instruction
 ```
-npx still create project project-name
+npx still init
 ```
 
-After creating a project a new folder is created with the name that was specified.
+After initiating the project the framework structure and files are download to the folder.
 
 
 <br>

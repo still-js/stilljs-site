@@ -13,6 +13,9 @@ nav:
       - Private Components: components-private.md
       - Multi level (3+) nesting: components-nesting-3+.md
   - ROUTING: routing.md
+  - LIFECYCLE HOOKS: lifecycle-hooks.md
+  - TYPE & TYPE HINTING: typing-and-typ-hinting.md
+  - STILL CLI: still-cli.md
   - STRUCTURE: Still.js Architecture.md
   #- Playground: playground.md
 theme:
