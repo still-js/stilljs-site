@@ -23,11 +23,11 @@ Component metadata for navigation is provided through the <b>`route.map.js`</b> 
 
 <a name="route-map-file"></a>
 
-Throughout this documentation/tutorial taking into consideration the component that will be represented, the Routing file (<b>`route.map.js`</b>), the <b>project structure</b> and the <b>`app-setup.js`</b> will be as shown bellow, in `app-setup.js` we set the <b>`MainMenuComponent`</b> as first loading component:
+Throughout this documentation/tutorial taking into consideration the component that will be represented, the Routing file (<b>`route.map.js`</b>), the <b>project structure</b> and the <b>`app-setup.js`</b> will be set as shown bellow, in `app-setup.js` we set the <b>`MainMenuComponent`</b> as first loading component:
 
 === "route.map.js"
 
-    ```js title="Routing mapping file which resides in the project root folder" linenums="1" hl_lines="10"
+    ```js title="Application Setup stating MainMenuComponent as the first component to load" linenums="1" hl_lines="10"
     import { StillAppMixin } from "./@still/component/super/AppMixin.js";
     import { Components } from "./@still/setup/components.js";
     import { AppTemplate } from "./app-template.js";
@@ -111,7 +111,7 @@ In addition to allow component method binding, the <b>`(click)`</b> directive al
 
 === "MainMenuComponent.js"
 
-    ```js title="HomeComponent.js" linenums="1" hl_lines="10 11"
+    ```js title="Using goto() with (click) directive to navigate to another component/page" linenums="1" hl_lines="10 11"
     import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
 
     export class MainMenuComponent extends ViewComponent {
@@ -181,7 +181,7 @@ This example takes into consideration the <b>route mapping file</b> and <b>folde
 
 === "MainMenuComponent.js"
 
-    ```js title="HomeComponent.js" linenums="1" hl_lines="9-13 20 23"
+    ```js title="Passing Data to the target component to be navigated to" linenums="1" hl_lines="9-13 20 23"
     import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
 
     export class MainMenuComponent extends ViewComponent {
@@ -291,7 +291,7 @@ This example takes into consideration the <b>route mapping file</b> and <b>folde
 
 === "MainMenuComponent.js"
 
-    ```js title="HomeComponent.js" linenums="1" hl_lines="2 12 21 23"
+    ```js title="Navigation whith business logic implemented with Router Helper" linenums="1" hl_lines="2 12 21 23"
     import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
     import { Router } from "../../@still/routing/router.js";
 
@@ -367,7 +367,7 @@ When it comes to Microfrontend, there might be a situation where more than one S
 
 === "MainMenuComponent.js"
 
-    ```js title="HomeComponent.js" linenums="1" hl_lines="2 13 21-24"
+    ```js title="Passing the serviceId event when it comes to using Router in Lone component context" linenums="1" hl_lines="2 13 21-24"
     import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
     import { Router } from "../../@still/routing/router.js";
 
@@ -457,7 +457,7 @@ Regular URL navigaition is in place through the component mapped URL, however, a
 
 === "MainMenuComponent.js"
 
-    ```js title="HomeComponent.js" linenums="1" hl_lines="11"
+    ```js title="Navigates to another component by using its url" linenums="1" hl_lines="11"
     import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
 
     export class MainMenuComponent extends ViewComponent {
@@ -478,7 +478,7 @@ Regular URL navigaition is in place through the component mapped URL, however, a
 
 === "PersonForm.js"
 
-    ```js title="Main menu has navigation to here, and vice-versa" linenums="1" hl_lines="11"
+    ```js title="Goes back to MainMenu by using its url" linenums="1" hl_lines="11"
     import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
 
     export class PersonForm extends ViewComponent {
