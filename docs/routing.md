@@ -272,7 +272,7 @@ This example takes into consideration the <b>route mapping file</b> and <b>folde
     }
     ```
 
-***MainMenuComponent*** - 2 scenarios are in place, first (<b>line 20</b>) we're passing acomplex data structure to another component by navigation, for this reason we need to assign to acomponent variable (state or prop). The second scenario (<b>line 23</b>), we're just passing astring, hence we only need to enclose it in single quotation.
+***MainMenuComponent*** - 2 scenarios are in place, first (<b>line 20</b>) we're passing a complex data structure to another component by navigation, hence we need to assign to a variable (state or prop) in the component. The second scenario (<b>line 23</b>), we're just passing a string, hence we only need to enclose it in single quotation mark.
 
 
 ***PersonList*** Used state variable for reactive template binding. Data is fetched using the Router helper, which requires the target object as input. <b>`stOnRender()`</b> hook triggers this process when the component is rendering.
