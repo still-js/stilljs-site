@@ -2,7 +2,9 @@
 
 All components extends from ViewComponent, and whenever gets rendered in the UI/browser can be assigned to the template variable as depicted below in lines 11 to 19.
 
-```js title="HomeComponent.js" hl_lines="11-18" linenums="1"
+=== "HomeComponent.js"
+
+```js title="This component is placed under the app/home/ path" hl_lines="11-18" linenums="1"
 import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
 
 export class HomeComponent extends ViewComponent {
@@ -35,12 +37,13 @@ Run result:
 
 <br>
 
+<a name="template-splitting"></a>
 ###  Splitting Template (`.html`) from `.js` file
 
 As long as both template/.html and .js files are in the same folder and have the are named similarly, we just need to remove the variable template from .js and it will be able to refer to the .html file instead. Tamplete splitting from .js file is quite usefull for complex template coding also making it more manageable and organized.
 
-=== "JavaScript file"
-	```js title="SlittedComponent.js" hl_lines="16-18 12" linenums="1"
+=== "SlittedComponent.js"
+	```js title="This component is placed under the app/components/splitting/ path" hl_lines="16-18 12" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class SlittedComponent extends ViewComponent {
@@ -48,8 +51,8 @@ As long as both template/.html and .js files are in the same folder and have the
 	}
 	```
 
-=== "HTML Template file"
-	```html title="SlittedComponent.html" linenums="1"
+=== "SlittedComponent.html"
+	```html title="Teamplate file stays in the same folder as the component" linenums="1"
 	<div>
 		<h3>
 			This is the header for the splitted template file
@@ -84,7 +87,8 @@ Run result:
 
 For event handling, we can create a method inside the component class, then we just need to bind it to any html element by assigning it to the (click) notation/directive as follow and highlighet in lines 12 and 16 to 18:
 
-```js title="HomeWithEvent.js" hl_lines="16-18 12" linenums="1"
+=== "HomeWithEvent.js"
+```js title="This component is placed under the app/components/event/ path" hl_lines="16-18 12" linenums="1"
 import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
 
 export class HomeWithEvent extends ViewComponent {
@@ -121,8 +125,8 @@ All dev defined variable are considered state which is managed by the components
 
 Access to the state value is done by calling `.value` property, assigning a value is is done straight to the property itself.
 
-
-```js title="CounterComponent.js" hl_lines="16-17 21-23 25-27 9" linenums="1"
+=== "CounterComponent.js"
+```js title="This component is placed under the app/components/counter/ path" hl_lines="16-17 21-23 25-27 9" linenums="1"
 import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 export class CounterComponent extends ViewComponent {
@@ -167,8 +171,8 @@ Run result:
 
 When building a form, in several situations Two-way data binding is needed, the (value) notation/directive is provided in which we only need to assign the state in which we are binding out form input, also input needs to be wrapped by a form (&lt;form&gt;&lt;/form&gt;).
 
-
-```js title="BasicForm.js" hl_lines="14 20-22" linenums="1"
+=== "BasicForm.js"
+```js title="This component is placed under the app/components/form/ path" hl_lines="14 20-22" linenums="1"
 import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 export class BasicForm extends ViewComponent {
@@ -228,7 +232,8 @@ Run result:
 
 By creating a variable annotated with @Prop (using JSDoc approach) we can then use this as flags (or any other application flow value) thereby being possible to assigne it on the Still.js directive, in this case to render or not, or hide/unhide (renderIf) and (showIf) notations are provided respectively.
 
-```js title="BasicForm.js" hl_lines="11-13 16 23 29" linenums="1"
+=== "BasicConditionalView.js"
+```js title="This component is placed under the app/components/conditoinal-render/ path" hl_lines="11-13 16 23 29" linenums="1"
 import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 export class BasicConditionalView extends ViewComponent {
@@ -295,7 +300,10 @@ Run result:
 
 Everything is base in Vanilla web technologies, therefore we can just write CSS naturally by creating the <style></style> scope, but it it also allows inline CSS if needed just like normall HTML with css in it.
 
-```js title="BasicForm.js" hl_lines="7-11 12 14 16-20 22 24-27" linenums="1"
+=== "FormatedDataTable.js"
+```js title="This component is placed under the app/components/styled/ path" hl_lines="9-13 14 16 18-22 24 26-29" linenums="1"
+import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
+
 export class FormatedDataTable extends ViewComponent {
 
 	isPublic = true;
@@ -378,7 +386,7 @@ Run result:
 Bringing a component inside another in general is achievable by using the `<st-element></st-element>` tag where we can then specify the component name we want to embed as child (tag property as line 16), additional child component property (e.g. lines 18 and 19) and event handlers also can be passed the same way (in the tag) as long as they child difined it.
 
 === "Parent Component"
-	```js title="UserForm.js" hl_lines="8-9 12 15-21 28-30" linenums="1"
+	```js title="UserForm.js - This component is placed under the app/components/embed/ path" hl_lines="8-9 12 15-21 28-30" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class UserForm extends ViewComponent {
@@ -415,7 +423,7 @@ Bringing a component inside another in general is achievable by using the `<st-e
 	```
 
 === "Child Component"
-	```js title="UserGrid.js" hl_lines="7-9 14" linenums="1"
+	```js title="UserGrid.js - This component is placed under the app/components/embed/ path" hl_lines="7-9 14" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class UserGrid extends ViewComponent {
@@ -480,7 +488,7 @@ Run result:
 Whe using still-cli (`@stilljs/cli` - which is the recommended way) to generate the component, both route name (same as component name) and component URL will be added automatically in the `route.map.js` file in the project root folder, therefore, navigation can be done the way it workes in regular web pages. in the bellow code navigation is done by using route name. 
 
 === "First Component"
-	```js title="EntryMenu.js" hl_lines="12" linenums="1"
+	```js title="EntryMenu.js - This component is placed under the app/components/menu/ path" hl_lines="12" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class EntryMenu extends ViewComponent {
@@ -500,7 +508,7 @@ Whe using still-cli (`@stilljs/cli` - which is the recommended way) to generate 
 	```
 
 === "Second Component"
-	```js title="UserRegistration.js" hl_lines="12" linenums="1"
+	```js title="UserRegistration.js - This component is placed under the app/components/user/ path" hl_lines="12" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class UserRegistration extends ViewComponent {
@@ -528,7 +536,7 @@ Whe using still-cli (`@stilljs/cli` - which is the recommended way) to generate 
 	```
 
 === "Routing file"
-	```js title="route.map.js" hl_lines="4 5" linenums="1"
+	```js title="route.map.js - This is a framework core file whichs stays in the project root dir" hl_lines="4 5" linenums="1"
 	export const stillRoutesMap = {
 		viewRoutes: {
 			regular: {
@@ -561,8 +569,8 @@ Run result:
 
 Because Still.js is 100% pure/Vanilla JavaScript, DOM manipulation can be done straight as the native/regular DOM API, no workaround or additional layer/special coding is needed. 
 
-=== "First Component"
-```js title="EntryMenu.js" hl_lines="18 31-37 40-46 28" linenums="1"
+=== "EntryMenu.js"
+```js title="This component is placed under the app/components/dom/ path" hl_lines="18 31-37 40-46 28" linenums="1"
 import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 export class LoginComponent extends ViewComponent {
@@ -634,8 +642,8 @@ Run result:
 
 Lopping a list and rendering its items is quite simple, Still.js provides the (forEach) notation/directive, which can be pass to a top level container which is then used to wrap the template for the desired output of each list item. 
 
-=== "Main Component"
-	```js title="LoopingDirective.js" hl_lines="7-12 18-23 35" linenums="1"
+=== "LoopingDirective.js"
+	```js title="This component is placed under the app/components/looping/ path" hl_lines="7-12 18-23 35" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class LoopingDirective extends ViewComponent {
@@ -677,8 +685,8 @@ Lopping a list and rendering its items is quite simple, Still.js provides the (f
 	}
 	```
 
-=== "Child Component used in the Loop"
-	```js title="ShoppingItem.js" hl_lines="7-13 17-19" linenums="1"
+=== "ShoppingItem.js"
+	```js title="This component is placed under the app/components/looping/ path" hl_lines="7-13 17-19" linenums="1"
 	import { ViewComponent } from "../../../@still/component/super/ViewComponent.js";
 
 	export class ShoppingItem extends ViewComponent {

@@ -100,27 +100,33 @@ Conceptually, all components extends from ViewComponent, and, behide the, theref
 <br/>
 #### Component Creation
 
-- The recommended way fo Component creation is by using the still-cli utility (@stilljs/cli on npm), for that we run the command as follow:
+- The recommended way fo Component creation is by using the still-cli utility (<b>@stilljs/cli</b> on npm), for that we run the command as follow:
 
-    `npx still create component path/to/MyComponentName`
+    ```
+	npx still create component path/to/MyComponentName
+	```
+	!!! warning "Component creation folder context"
+		The component creation command instruction needs to be run inside s Still.js project, or in the <b>`app/`</b> (which is inside the Still.js project) folder or a subfolder of the <b>`app/`</b> folder
 
     <br>
 
 - The create command for component options also provides with aliases, in this case we can abbreviate both the comand and the type of object to be created (component in this case):
 
-    `npx st c cp path/to/UserDataTable`
+    ```
+	npx st c cp path/to/UserDataTable
+	```
 
     <br/>
     In the above example, you'll be creating a component with name UserDataTable in the specified path, there is no need to create he folders and sub-folders, as in case they don't exist it'll get created.
 
 <br/>
 
-#### 1.1 Component required variables (Reserved for the Framework)
+#### 1.1 Component required/reserved variables (Reserved for the Framework)
 
 - ***isPublic*** - This states if the component can be accessed without authentication or not.
 
 
-- ***template*** - Declares the UI itself by using differnt murkups (HTML, Still elements, Web-Component) and stylesheets (CSS). Not declaring it will make the component not to load.
+- ***template*** - Declares the UI itself by using differnt murkups (HTML, Still elements, Web-Component) and stylesheets (CSS). In case the template is defined in an HTML (<a href="../get-start/#template-splitting">see here</a>) file then temlate variable should not exist in the component.
 
 
 In adition to isPublic and template, there are other features which can be used inside the javaScript part of the component such as the special method/Hooks (see hooks section), follow an example:

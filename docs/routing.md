@@ -5,7 +5,7 @@ Unlike some other framerowkrs Still.js has a built-in navitation capabilities, b
 
 All Routing capabilities in the Framework is provided by the Router Helper/Object, it taks care of data passing, handles route name and url.
 
-Component metadata for navigation is provided through the <b>`route.map.js`</b> file, it contains three data for each component, and eache component metadata has the format as follow:
+Component metadata for navigation is provided through the <b>`route.map.js`</b> file, it contains three data for each component, such metadata is added automatically when component is created using still-cli (<a href="../components/#component-creation">see here</a>), and eache component metadata has the format as follow:
 
 ```js
 {

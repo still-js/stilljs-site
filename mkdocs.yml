@@ -12,8 +12,11 @@ nav:
       - Lone component and Microfrontend: lone-component.md
       - Private Components: components-private.md
       - Multi level (3+) nesting: components-nesting-3+.md
-  - ROUTING: routing.md
+  - COMPONENT ANNOTATIONS: annotation.md
+  - TEMPLATE DIRECTIVE: directive.md
+  - ROUTING & NAVIGATION: routing.md
   - LIFECYCLE HOOKS: lifecycle-hooks.md
+  - APP TEMPLATE: app-template.md
   - TYPE & TYPE HINTING: typing-and-typ-hinting.md
   - STILL CLI: still-cli.md
   - STRUCTURE: Still.js Architecture.md
