@@ -1,5 +1,5 @@
 ### Overview
-Still provides with different types of Hooks not only when it comes to component Lifecycle but for additional specific context. Services also provide a hook (<a href="#stOnUnload-hook">see this example</a>) that can be used for other services as well as component to subscribe so that they get triggered/notified when the service is loaded/ready.
+Still provides with different types of Hooks not only when it comes to component Lifecycle but for additional specific context. Services (<b>`@Inject`</b> annotation) and Proxies (<b>`@Proxy`</b> annotation) also provide a hook (<a href="#stOnUnload-hook">see this example</a>) that can be used for components to subscribe so that they get triggered/notified when the service is loaded/ready.
 
 <br>
 
@@ -8,7 +8,14 @@ Still provides with different types of Hooks not only when it comes to component
 
 Essentially, in Still.js the component Lifecycle comprises 4 special methods (Hooks) as depicted in blue rectangles in the bellow diagram: <br><br>
 
-![Project Structure](assets/img/StillJS%20component-fifecycle.png)
+![Component Lyfecycle](assets/img/StillJS%20component-fifecycle.png#lcycle){width="600px" border="1px solid black" style="margin: 0 auto"}.
+
+<style>
+    img[src*="#lcycle"] {
+        margin 0 auto;
+        display: block;
+    }
+</style>
 
 <br>
 <br>
@@ -17,7 +24,7 @@ Essentially, in Still.js the component Lifecycle comprises 4 special methods (Ho
 
 ### Examples Setup
 
-The examples in this documentation/tutorials will be base in the bellow <b>folder structure</b>, <b>Application Setup</b> (<b>`app-setup.js`</b>) and routes settings (<b>`route.map.js`</b>)
+The examples in this documentation/tutorials will be base in the bellow <b>folder structure</b>, <b>Application Setup</b> (<b>`app-setup.js`</b>) and routes metadata (<b>`route.map.js`</b>)
 
 === ":octicons-project-roadmap-16: Project folder structure"
 	```js title="Project folder structure"
@@ -62,7 +69,7 @@ The examples in this documentation/tutorials will be base in the bellow <b>folde
 
 	}
 	```
-=== "app-setup.js"
+=== "route.map.js"
 	```js title="This is the where Application context aspects are setup. This file is in the root folder. " linenums="1"
     export const stillRoutesMap = {
         viewRoutes: {
