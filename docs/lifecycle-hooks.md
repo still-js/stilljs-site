@@ -80,7 +80,7 @@ The examples in this documentation/tutorials will be base in the bellow <b>folde
                 },
                 PersonForm: {
                     path: "app/person",
-                    url: "/person/register"
+                    url: "/person/register" //This url was changed conviniently
                 }
             },
             lazyInitial: {}
