@@ -415,7 +415,7 @@ Bringing a component inside another in general is achievable by using the `<st-e
 			this.changeCounter = this.changeCounter.value + 1;
 
 			/** @type { UserGrid } */
-			const userGridObj = Components.getFromRef('insideFormGridReference');
+			const userGridObj = Components.ref('insideFormGridReference');
 			userGridObj.tableTitle = 'Title altered ' + this.changeCounter.value + 'x';
 		}
 
