@@ -49,11 +49,58 @@ From inside the folder where we want to have our Lone components, using the stil
 npx still lone
 ```
 
+<br>
+
+#### 1.2 Adding the CDN and embeding the component to the HTML file
+
+<b>index.html</b> file is being used in this case, but it can just be done in any  type of file that will render something to the browser.
+
+=== "index.html"
+
+```html linenums="1" hl_lines="10 12-13 20"
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>StillJS</title>
+    <!-- Bellow (STILL_HOME) is the Still env variable to inform where to look for components -->
+    <script> STILL_HOME = 'microfrontend/still/' </script>
+    <!-- Bellow both JavaScript and CSS CDN inclusion, JS type neeeds to module -->
+    <link href="https://cdn.jsdelivr.net/npm/@stilljs/core@latest/@still/ui/css/still.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@stilljs/core@latest/@still/lone.js" type="module"></script>
+</head>
+
+<body>
+    <div>
+        This is My HTML regular content nothing to do with Still.js
+        <!-- Bellow component (DummyComponent) will be created step (step 1.4) -->
+        <st-element component="DummyComponent"></st-element>
+    </div>
+</body>
+```
+
+Our application file is required to set the <b>`STILL_HOME`</b> variable which needs to point to the root folder where the still project is located, as this is how the framework knows how to bring components to our application.
+
+<br>
+
+<a name="running-lone-cmp"></a>
+#### 1.3 Running my Application
+In order for the components to load properly the Application needs to be served from a web server, it can be NGINX or Apache for example, in this case, we'll use live-server. Using live-server we need to do it from the root folder:
+
+![Project Structure](assets/img/serving-lone.png)
+
+??? success "Expand to show Lone component running success"
+    ![Project Structure](assets/img/lone-run-result.png)
+
+
 
 
 <br>
 
-#### 1.2 Creating the Lone component Whithin CDN base project
+#### 1.4 Creating the Lone component Whithin CDN base project
 
 Let's create our Lone component based on the folder structure presented previously (<a href="#point.1.1">point 1.1</a>), from the root folder where still is located and use <b>abbreviated still-cli command option</b>.
 
@@ -82,54 +129,6 @@ Once generated, the component should have the scaffolding code as follows:
     }
     ```
 In this case the <b>`ViewComponent`</b> super class is not imported dispite being extended, this is because CDN provides it since it is not present locally.
-
-
-<br>
-
-#### 1.3 Adding the CDN and embeding the component to the HTML file
-
-<b>index.html</b> file is being used in this case, but it can just be done in any  type of file that will render something to the browser.
-
-=== "index.html"
-
-```html linenums="1" hl_lines="10 12-13 20"
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <title>StillJS</title>
-    <!-- Bellow (STILL_HOME) is the Still env variable to inform where to look for components -->
-    <script> STILL_HOME = 'microfrontend/still/' </script>
-    <!-- Bellow both JavaScript and CSS CDN inclusion, JS type neeeds to module -->
-    <link href="https://cdn.jsdelivr.net/npm/@stilljs/core@latest/@still/ui/css/still.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@stilljs/core@latest/@still/lone.js" type="module"></script>
-</head>
-
-<body>
-    <div>
-        This is My HTML regular content nothing to do with Still.js
-        <!-- Bellow component (DummyComponent) was created in the previous step (step 1.2) -->
-        <st-element component="DummyComponent"></st-element>
-    </div>
-</body>
-```
-
-Our application file is required to set the <b>`STILL_HOME`</b> variable which needs to point to the root folder where the still project is located, as this is how the framework knows how to bring components to our application.
-
-<br><br>
-
-<a name="running-lone-cmp"></a>
-#### 1.5 Running my Application
-In order for the components to load properly the Application needs to be served from a web server, it can be NGINX or Apache for example, in this case, we'll use live-server. Using live-server we need to do it from the root folder:
-
-![Project Structure](assets/img/serving-lone.png)
-
-??? success "Expand to show Lone component running success"
-    ![Project Structure](assets/img/lone-run-result.png)
-
 
 
 
