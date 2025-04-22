@@ -1,7 +1,15 @@
 ### Overview
 Since Still.js is built with vanilla JavaScript, which doesn't support annotations, it uses JavaScript comments and JSDoc to enable annotation-like capabilities. Still.js defines its own specific annotation format for this purpose.
 
-Still.js currently supports 4 annotations, 3 of which are top-level and must appear at the top. These annotations are used for specific scenarios, allowing components to have metadata available at runtime.
+Still.js currently supports 5 annotations, 4 of which are top-level and must appear at the top. These annotations are used for specific scenarios, allowing components to have metadata available at runtime.
+
+### Still Command Line Tool
+!!! warning "Changes @Path from @Path"
+
+    If you're using Still.js version <=0.0.17 the <b>`@Path`</b> annotation
+    is named <b>`@Path`</b>.
+
+<br/>
 
 <br>
 <table class="annotations">
@@ -40,19 +48,27 @@ Still.js currently supports 4 annotations, 3 of which are top-level and must app
         <td>Define a class property which serve as a link between Parent and a child component (embeded)</td>
         <td>
             <ul>
-                <li>Provide parent with public child methods and property/states</li>
-                <li>Parent-to-child communication</li>
+                <li>Inject the defined type (@type) as dependency</li>
             </ul>
         </td>
     </tr>
     <tr>
-        <td>@ServicePath</td>
-        <td>N/A</td>
-        <td>Complementary to the <b>@Inject</b> annotation and recieves the path of the service being injected. If used it needs to come right after <b>@Inject</b> annotation</td>
+        <td>@Controller<top-level>top-level</top-level></td>
+        <td>JSDoc <b>@type</b></td>
+        <td>Alternative to <b>@Inject</b> which in addition to injection adds the specified controller as the main controller of the component allowing it to be referenced as <b>controller.</b> in the template</td>
         <td>
             <ul>
-                <li>Provide parent with public child methods and property/states</li>
-                <li>Parent-to-child communication</li>
+                <li>Inject the defined type (@type) as dependency</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>@Path</td>
+        <td>N/A</td>
+        <td>Complementary to the <b>@Inject</b> or <b>@Controller</b> annotation and recieves the path of the service being injected. If used it needs to come right after <b>@Inject</b> or <b>@Controller</b> annotation</td>
+        <td>
+            <ul>
+                <li>Specify the folder path where the service/controller is located</li>
             </ul>
         </td>
     </tr>
@@ -230,7 +246,7 @@ Although <b>`Prop`</b> does not reactively reflect to binding, it natually have 
 
 This example takes into consideration the <b><a href="#example-setup">above</a></b> folder structure, app and routing setup.
 
-<b>`Prop`</b> variables are made not to behave reactively, however, when combined with <b>`(showIf)`</b> directive it will act reactively against it, follow the example with animated result right after:
+<b>`Prop`</b> variables are made not to behave reactively, however, when combined with <a href="../directive/#the-showif-directive-example"><b>`(showIf)`</b></a> directive it will act reactively against it, follow the example with animated result right after:
 
 === "HomeComponent.js"
 ```js linenums="1" hl_lines="7 9 17 23" title="This component is placed in the app/base-components/ folder"
@@ -391,14 +407,14 @@ Bellow is a code sample with the animated result right after it:
 <br>
 <br>
 
-
-### <b>@Inject</b> - User Services for Global store and HTTP services
+<a name="inject-example"></a>
+### <b>@Inject</b> - Use Services for Global store and HTTP services
 
 This example takes into consideration the <b><a href="#example-setup">above</a></b> folder structure, app and routing setup.
 
 It allows Service dependency injection offering a centralized way to handle data processing and bsiness logic. Services also provide Global Storage and are ideal for implementing HTTP calls.
 
-Still.js uses a setter method at the application level (e.g., in <b>`app-setup.js`</b>) to define the folder for services. If services are located elsewhere, the <b>`@ServicePath`</b> annotation can be used to speficy it in the example after this one.
+Still.js uses a setter method at the application level (e.g., in <b>`app-setup.js`</b>) to define the folder for services. If services are located elsewhere, the <b>`@Path`</b> annotation can be used to speficy it in the example after this one.
 <br>
 
 
@@ -523,12 +539,67 @@ Still.js uses a setter method at the application level (e.g., in <b>`app-setup.j
 
 <br>
 
-### <b>@ServicePath</b> - Specifying service path when <b>@Inject</b>ing
+
+### <b>@Controller</b> - Sharing UI feature between components
+
+Just like the <a href="#inject-example"><b>`@Inject`</b></a>, the <b>`@Controller`</b> annotation allow to inject a controller to a component where a special situation as well as a constraint takes place as follow:
+
+- ***Special case***: The controller annotated with <b>`@Controller`</b> is marked as the main controller of the component, which can be referenced in the template for HTML event binding using `controller.methodName()`.
+
+- ***Contraint***: Only one controller can be annotate with <b>`@Controller`</b>, if more than one, the last one will take precedence. In contrast <b>`@Inject`</b> can be used more than one.
+
+<br>
+
+Example:
+```js linenums="1" hl_lines="3-6" title="The controller"
+
+//The controller
+export class NameOfController extends BaseController {
+    getInputValue(){
+        const value = document.getElementById('inputId').value;
+        return value;
+    }
+}
+```
+
+```js linenums="1" title="Injection in the component"
+
+/**
+ * @Controller
+ * @Path path-to/controller-folder/
+ * @type { NameOfController }
+ */
+ mainController;
+```
+
+```html linenums="1" hl_lines="3-4" title="Referencing in the component template"
+<div>
+    <form>
+        <input type="text" id="inputId">
+        <button onclick="controller.getInputValue()">Get Value</button>
+    </form>
+</div>
+```
+
+```html linenums="1" hl_lines="3" title="Referencing in anoter component template which didn't annotate with @Controller, or didn't inject at all"
+<!-- This should be a child or adjacent component -->
+<div>
+    <button onclick="controller('NameOfController').getInputValue()">Get Value</button>
+</div>
+```
+
+
+Controllers are a way for components to share features whereas the Services are for Data sharing, therefore, the use case for it is for when we have a component which can have different child or sibling, but, only the main component should inject as <b>`@Controller`</b>, other components will inject it normally or only reference in the template.
+
+<br>
+<br>
+
+### <b>@Path</b> - Specifying service path when <b>@Inject</b>ing
 
 This example takes into consideration the <b><a href="#example-setup">above</a></b> folder structure, app and routing setup.
 
 
-<b>`@ServicePath`</b> is a second level annotation that might to come hence that have to come right after @Inject. It recieves the path to the folder where the service is located. Follow the code sample with the animated result:
+<b>`@Path`</b> is a second level annotation that might to come hence that have to come right after @Inject. It recieves the path to the folder where the service is located. Follow the code sample with the animated result:
 
 
 
@@ -544,7 +615,7 @@ This example takes into consideration the <b><a href="#example-setup">above</a><
 
         /** 
          * @Inject
-         * @ServicePath services/user/
+         * @Path services/user/
          * @type { UserService } 
          * */
         serviceObj;
