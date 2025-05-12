@@ -30,7 +30,20 @@ After initiating the project the framework structure and files are download to t
 
 #### 3. Acessing the project (Project structure)
 
-![Project Structure](assets/img/project-structure.png)
+```js
+    project-name/ //My project folder
+    |__ @still/ // Still.js framework
+    |__ app/ // Folder which holdes to app files
+    |     |__ HomeComponent.js //Component generated automatically when creating project
+    |__ config/ //Folder which holds application configuration files
+    |     |__ app-setup.js //App configuration file/class
+    |     |__ app-template.js //App template scheleton
+    |     |__ route.map.json //Component routing and path file
+    |__ index.html //Application container
+    |__ jsconfig.js //Basic configuration for vscode
+    |__ package.json // Regular package JSON
+
+```
 
 In the above picture we have the project structure open in the code editor, everything concerning the project will be created inside the <a><b>app</b></a> folder. Inicially the <a><b>app</b></a> folder comes with one component which path is <a><b>app/home/HomeComponent.js</b></a> as also depicted in the picture.
 

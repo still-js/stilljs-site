@@ -27,7 +27,8 @@ The bellow folder structure is only an example which can also be taken as sugges
     |     |    |    |    |__ dummy/ #Folder which holds the comopnents
     |     |    |    |    |    |__ DummyComponent.js #Created in the point 1.4
     |     |    |    |    |__ another/ #Will house components concerning to the user
-    |     |    |__ route.map.js #still-cli will add the route automatically when creating a component
+    |     |    |__ config/ #App folder where component will be placed
+    |     |    |    |__ route.map.js #still-cli will add the route automatically when creating a component
     |     | 
     #Bellow are the files of my project placed in the project root folder
     |__ index.html

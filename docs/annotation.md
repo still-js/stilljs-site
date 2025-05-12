@@ -135,8 +135,9 @@ The examples in this documentation/tutorials will be base in the bellow <b>folde
     |   |   |__ user/
     |   |   |   |__ UserService.js
     |   |   |   |
-    |__ app-setup.js
-    |__ route.map.js
+    |__ config/
+    |    |__ app-setup.js
+    |    |__ route.map.js
     |__  ...
 
 	```

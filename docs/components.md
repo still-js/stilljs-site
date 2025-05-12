@@ -29,9 +29,10 @@ In Still.js, the template variable contains pure HTML, a defined WebComponent, &
     |    |
     |    |__ home/
     |    |   |__ HomeComponent.js
-    |    |   |   |
-    |__ app-setup.js
-    |__ route.map.js
+    |    |
+    |__ config/
+    |    |__ app-setup.js
+    |    |__ route.map.js
     |__  ...
 
 	```
@@ -141,8 +142,9 @@ In adition to isPublic and template, there are other features which can be used 
     |    |   |__ user/
     |    |   |   |__ UserForm.js
     |    |   |   |
-    |__ app-setup.js
-    |__ route.map.js
+    |__ config/
+    |    |__ app-setup.js
+    |    |__ route.map.js
     |__  ...
 
 	```
@@ -225,8 +227,9 @@ Those are 2 of the existing ways for the component to hold data, therefore, they
     |    |   |__ user/
     |    |   |   |__ UserForm.js
     |    |   |   |
-    |__ app-setup.js
-    |__ route.map.js
+    |__ config/
+    |    |__ app-setup.js
+    |    |__ route.map.js
     |__  ...
 
 	```
@@ -348,8 +351,9 @@ It's possible to put one component inside another, nevertheless, in order to gua
     |    |   |   |__ BidOffersComponent.js
     |    |   |   |__ BiddersList.js
     |    |   |   |
-    |__ app-setup.js
-    |__ route.map.js
+    |__ config/
+    |    |__ app-setup.js
+    |    |__ route.map.js
     |__  ...
 
 	```
@@ -474,8 +478,9 @@ Covering from the most basic to the most complex scenarios, Still.js provides wi
     |    |   |   |__ BiddingDisplay.js
     |    |   |   |__ BidOffersComponent.js
     |    |   |   |
-    |__ app-setup.js
-    |__ route.map.js
+    |__ config/
+    |    |__ app-setup.js
+    |    |__ route.map.js
     |__  ...
 
 	```

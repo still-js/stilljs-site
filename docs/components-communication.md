@@ -164,8 +164,9 @@ State Subscription is a way for one Component to listen to another component Sta
     |    |   |   |__ BidOffersComponent.js
     |    |   |   |__ BiddersList.js
     |    |   |   |
-    |__ app-setup.js
-    |__ route.map.js
+    |__ config/
+    |    |__ app-setup.js
+    |    |__ route.map.js
     |__  ...
 
 	```
@@ -313,8 +314,9 @@ State Subscription is a way for one Component to listen to another component Sta
     |    |   |   |__ BidOffersComponent.js
     |    |   |   |__ BiddersList.js
     |    |   |   |
-    |__ app-setup.js
-    |__ route.map.js
+    |__ config/
+    |    |__ app-setup.js
+    |    |__ route.map.js
     |__  ...
 
 	```
@@ -503,14 +505,15 @@ Services enable component communication without being tied to a specific compone
     |    |__ service/
     |    |   |__ bidding/Service.js
     |    |   |
-    |__ app-setup.js
-    |__ route.map.js
+    |__ config/
+    |    |__ app-setup.js
+    |    |__ route.map.js
     |__  ...
 
 	```
 
 !!! note "Still.js Service considerations"
-    - Services are singleton and for them to be injected we use the <b>`@Inject`</b> annotation which can also be combined with <b>`@ServicePath`</b> annotation allowing for specification of the service file path, also, it's required to define the injection <b>`@type`</b> just like we do for a <a href="#proxy-example">Proxy</a>.
+    - Services are singleton and for them to be injected we use the <b>`@Inject`</b> annotation which can also be combined with <b>`@Path`</b> annotation allowing for specification of the service file path, also, it's required to define the injection <b>`@type`</b> just like we do for a <a href="#proxy-example">Proxy</a>.
 
     - Just the same as <b>`@Proxy`</b>, Service need to be ready to be used, then again we call the the <b>serviceName.on('load', callBackFunc)</b>, where <b>serviceName</b> is the variable name annotated with <b>`@Inject`</b>.
     
@@ -520,12 +523,12 @@ Services enable component communication without being tied to a specific compone
 
 <br>
 
-#### 3.1. Defining Service path using @ServicePath annotation
+#### 3.1. Defining Service path using @Path annotation
 
 Refer to <b><a href="#initial-setup">StillAppSetup above example</a></b> to view how the first component to load is set.
 <br>
 
-Still.js offers the <b>`@ServicePath`</b> annotation to specify the folder path of an injecting service, ensuring a more granular project structured organization. The `route.map.js` file maps component locations. Follow the example:
+Still.js offers the <b>`@Path`</b> annotation to specify the folder path of an injecting service, ensuring a more granular project structured organization. The `route.map.js` file maps component locations. Follow the example:
 
 === "BiddingDisplay.js"
 	```js title="This is the parent component which subscribe to the service store" hl_lines="10-13 22-27" linenums="1"
@@ -537,9 +540,9 @@ Still.js offers the <b>`@ServicePath`</b> annotation to specify the folder path 
         isPublic = true;
 
         /** Service declaration, will get injected automatically due to Inject anottation
-         *  from the specified ServicePath path due to the annotation
+         *  from the specified Path path due to the annotation
          * @Inject
-         * @ServicePath service/api/
+         * @Path service/api/
          * @type { CustomersService } */
         custService;
 
@@ -574,7 +577,7 @@ Still.js offers the <b>`@ServicePath`</b> annotation to specify the folder path 
         /** Parameter after sertice path is infact the folder
          *  where it's (CustomersService.js) placed
          * @Inject
-         * @ServicePath service/api/
+         * @Path service/api/
          * @type { CustomersService } */
         customerService;
 
@@ -641,8 +644,9 @@ Still.js offers the <b>`@ServicePath`</b> annotation to specify the folder path 
     |    |   |__ api
     |    |   |   |__ CustomersService.js
     |    |   |   |
-    |__ app-setup.js
-    |__ route.map.js
+    |__ config/
+    |    |__ app-setup.js
+    |    |__ route.map.js
     |__  ...
 
 	```

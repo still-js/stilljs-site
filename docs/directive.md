@@ -548,7 +548,7 @@ It defines the HTML form field/input element as mandatory thereby making it mark
 
 This directive works with <b>`(value)`</b> to define valid input types for form elements. Still.js offers 7 default validators, and custom validators can also be implemented. 
 
-**Follow Validators:**
+**Follow the built-in Validators:**
 
 - ***number*** - Allow only number in the target filed
 - ***alhpanumeric*** - Allow both number and text but not special characters

@@ -90,8 +90,9 @@ Throughout this documentation/tutorial taking into consideration the component t
     |    |   |__ PersonForm.js
     |    |   |__ PersonList.js
     |    |   |
-    |__ app-setup.js
-    |__ route.map.js
+    |__ config/
+    |    |__ app-setup.js
+    |    |__ route.map.js
     |__  ... #-> Remaining files
 
     ```

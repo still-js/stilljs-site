@@ -117,8 +117,9 @@ For the sake of user permission aspect, Private components in Still.js help mana
     |    |   |   |__ CheckingAccount.js
     |    |   |   |__ SavingAccount.js
     |    |   |   |
-    |__ app-setup.js
-    |__ route.map.js
+    |__ config/
+    |    |__ app-setup.js
+    |    |__ route.map.js
     |__  ...
 
     ```

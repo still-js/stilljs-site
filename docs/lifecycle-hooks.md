@@ -41,8 +41,9 @@ The examples in this documentation/tutorials will be base in the bellow <b>folde
     |    |__ services/
     |    |   |__ MainService.js
     |    |   |   |
-    |__ app-setup.js
-    |__ route.map.js
+    |__ config/
+    |    |__ app-setup.js
+    |    |__ route.map.js
     |__  ...
 
 	```
@@ -236,7 +237,7 @@ It takes place especially when destroying a component, which happens when naviga
 
         /** 
          * @Inject
-         * @ServicePath services/
+         * @Path services/
          * @type { MainService } 
          * */
         serviceObj;

@@ -19,7 +19,7 @@ nav:
   - LIFECYCLE HOOKS: lifecycle-hooks.md
   - APP TEMPLATE: app-template.md
   - TYPE & TYPE HINTING: typing-and-typ-hinting.md
-  - STRUCTURE: Still.js Architecture.md
+  - STRUCTURE: architecture.md
   #- Playground: playground.md
 theme:
   name: material
@@ -88,9 +88,13 @@ markdown_extensions:
   # Tab diagrams
   - pymdownx.tabbed:
       alternate_style: true
-#extra:
-#  social:
-#    - icon: simple/linkedin
-#      link: https://www.npmjs.com/settings/stilljs/packages
+extra:
+  social:
+    - icon: fontawesome/brands/discord
+      link: https://discord.com/invite/WmBEj6Cv
+      name: Stilljs Discord Channel
+    - icon: fontawesome/brands/github
+      link: https://github.com/still-js/core
+      name: Stilljs Discord Channel
 
 copyright: Cpyright &copy; 2025 StillJS

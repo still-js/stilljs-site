@@ -13,14 +13,15 @@ First thing first, Still.js CDN based project are also named Lone component, and
 <br>
 
 === "Folder structure in CDN mode"
-```js hl_lines="3-7"
+```js hl_lines="3-8"
 my-project-name
 |
 |_ microfronteds
 |  |_ still
 |  |  |_ app
 |  |  |  |_ components
-|  |  |_ route.map.js
+|  |  |_ config
+|  |  |  |_ route.map.js
 |  |_ another-mf-provider
 |_ index.html
 
@@ -88,8 +89,8 @@ npx still lone
 === "route.map.js"
 	```js linenums="1" hl_lines="8"
     /** 
-     * This file will be placed in the same level as app/ folder, 
-     * and both are inside the still folder
+     * This file will be placed inside config/ folder which is in the 
+     * same level as app/ folder, and both are inside the still folder
      * */
     export const stillRoutesMap = {
         viewRoutes: {
