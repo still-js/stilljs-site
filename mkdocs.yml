@@ -91,10 +91,10 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/discord
-      link: https://discord.com/invite/WmBEj6Cv
+      link: https://discord.gg/fUVJRTmQ9f
       name: Stilljs Discord Channel
     - icon: fontawesome/brands/github
       link: https://github.com/still-js/core
-      name: Stilljs Discord Channel
+      name: Stilljs Git repository
 
 copyright: Cpyright &copy; 2025 StillJS
