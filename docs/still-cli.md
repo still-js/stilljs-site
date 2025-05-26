@@ -42,6 +42,8 @@ still create component app/components/user/UserListComponent
 
 ![](assets/img/create-component.gif)
 
+!!! warning "Folder structure changes"
+    The folder structures in this images correspond the old Still.js setup. In the new setup there if the config folder which holds `app-setup.js`, `app-template.js` and `route.map.js`
 
 !!! info "Lone component creation"
     <a href="../lone-component/">Lone component</a> takes place in the use case where we're creating a Microfrontend or using Still.js framework through the CDN, therefore when creating a component in this context we need to specify the <b>`--lone`</b> flag in the end. (e.g. <b>`npx still create component path/to-my/MyComponent --lone`</b>)
@@ -56,6 +58,9 @@ still route list
 ```
 
 ![](assets/img/list-routes.gif)
+
+!!! warning "Folder structure changes"
+    The folder structures in this images correspond the old Still.js setup. In the new setup there if the config folder which holds `app-setup.js`, `app-template.js` and `route.map.js`
 
 <br/>
 <br/>
