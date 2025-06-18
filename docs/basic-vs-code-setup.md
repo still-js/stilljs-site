@@ -12,7 +12,6 @@ Bacuase <b>`still-cli`</b> is a Vanilla JavaScript Framework that leverages ES m
 <br>
 
 #### Configure VSCode to add .js when auto-import
-Still CLI tool is provided through the NPM (Node Package Manager), and it has to be installed globally and not in a project scope:
 
 ![](assets/img/auto-import.gif)
 
