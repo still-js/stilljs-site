@@ -3,7 +3,7 @@ Directives is a way in Still.js to deal with some UI specific features on the te
 
 In Still.js, directives are added as HTML tag properties enclosed in parentheses (e.g., (click)), visually distinguishing them from standard HTML attributes.
 
-Still.js some directives which are addressing things in different categories such as <b>`event binding`</b>, <b>`form binding`</b>, <b>`looping`</b>, <b>`rendering & conditional`</b>, <b>`form validation`</b>, follow a list bellow:
+There are some directives available, and they are addressing things in different categories such as <b>`event binding`</b>, <b>`form binding`</b>, <b>`looping`</b>, <b>`rendering`</b> & <b>`conditional`</b>, <b>`form validation`</b>, follow a list bellow:
 
 
 ### Event Directive
@@ -296,11 +296,42 @@ Directives in the Form binding category allows to handle 2-way binding as wey as
     </tr>
     <tr>
         <td>(value)</td>
-        <td>HTML form input element (e.g. &lt;input>, &lt;select>)</td>
+        <td>HTML form input element (e.g. &lt;input>, &lt;select>, <span style='color: red;'>except for radio and checkbox</span>, as thier bind is done with <b>(field)</b> directive instead)</td>
         <td>Provides two-way binding for a form input against a component state</td>
         <td>
             <ul>
-                <li>Two-way between component state variable and a Form input</li>
+                <li>Two-way between component state variable and a Form input.</li>
+                <li>On the Radio button and Checkbox only serves to bind value, but not property.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>(field)</td>
+        <td>HTML form, Radio button and Checkboxes</td>
+        <td>Provides two-way binding for a form input against a component state</td>
+        <td>
+            <ul>
+                <li>Two-way between component state variable and a Form Radiobutton and/or Checkbox input</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>(labelAfter)</td>
+        <td>Radio button and Checkboxes text label</td>
+        <td>Puts the specified text label right after (beside) the Radiobutton/Checkbox</td>
+        <td>
+            <ul>
+                <li>Presenting label to the used</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>(labelBefore)</td>
+        <td>Radio button and Checkboxes text label</td>
+        <td>Puts the specified text label right before (beside) the Radiobutton/Checkbox</td>
+        <td>
+            <ul>
+                <li>Presenting label to the used</li>
             </ul>
         </td>
     </tr>
@@ -551,7 +582,7 @@ This directive works with <b>`(value)`</b> to define valid input types for form 
 **Follow the built-in Validators:**
 
 - ***number*** - Allow only number in the target filed
-- ***alhpanumeric*** - Allow both number and text but not special characters
+- ***alphanumeric*** - Allow both number and text but not special characters
 - ***text*** - Allow anything
 - ***email*** - Allow email only
 - ***phone*** - Allow Telephone number format
