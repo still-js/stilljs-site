@@ -17,6 +17,7 @@ nav:
       - Multi level (3+) nesting: components-nesting-3+.md
   - COMPONENT ANNOTATIONS: annotation.md
   - TEMPLATE DIRECTIVE: directive.md
+  - CONDITIONAL RENDERING, SHOW/HIDE: conditional-rendering.md
   - ROUTING & NAVIGATION: routing.md
   - LIFECYCLE HOOKS: lifecycle-hooks.md
   - APP TEMPLATE: app-template.md
