@@ -6,7 +6,7 @@ Still.js currently supports 5 annotations, 4 of which are top-level and must app
 ### Still Command Line Tool
 !!! warning "Changes @Path from @Path"
 
-    If you're using Still.js version <=0.0.17 the <b>`@Path`</b> annotation
+    If you're using Still.js version <=0.0.17 the <b>`@ServicePath`</b> annotation
     is named <b>`@Path`</b>.
 
 <br/>

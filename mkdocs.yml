@@ -21,7 +21,7 @@ nav:
   - ROUTING & NAVIGATION: routing.md
   - LIFECYCLE HOOKS: lifecycle-hooks.md
   - APP TEMPLATE: app-template.md
-  - FORM: form.md
+  - FORM & VALIDATION: form.md
   - TYPE & TYPE HINTING: typing-and-typ-hinting.md
   - STRUCTURE: architecture.md
   #- Playground: playground.md

@@ -1,9 +1,5 @@
-!!! info "Work in Progress"
-
-    Thee is yet a work in progress in this documentation, it means that some addiotnal content, scenarios and example are yet to be brought, nevertheless the current content cover from the basics to more elaborated scenarios.
-
 ### Overview
-- As known, form as one of the most ways and traditional user inputs approaches, hence, in Still.js they are part of the core features.
+- As known, form are one of the most ways and traditional user inputs approaches, hence, in Still.js they are part of the core features.
 
 
 #### What you'll learn
@@ -16,9 +12,6 @@
 
 <p></p>
 <b> &nbsp;&nbsp;&nbsp; Validators </b>
-	<br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Validaor
-	<br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Warning
-	<br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Trigger
 
 <br>
 
@@ -211,6 +204,10 @@ Checkboxes and radio buttons in Still.js use a `label` directive with position s
 For comboboxes, binding is done on the <b>`<select>`</b> element using `(value)`, and when options come from a list, a placeholder can be used.
 
 ![Project Structure](assets/img/combo-box.gif)
+
+
+### Form validation overview
+Still.js provides with it's own validation capabilities which provides with a bunch of pre-defined ones. But also it allows custom validator to be added. Check <a href="../directive/#form-validation-directives">Form Validation Directive</a>.
 
 
 ### In Summary
