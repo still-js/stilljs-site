@@ -4,7 +4,7 @@ Since Still.js is built with vanilla JavaScript, which doesn't support annotatio
 Still.js currently supports 5 annotations, 4 of which are top-level and must appear at the top. These annotations are used for specific scenarios, allowing components to have metadata available at runtime.
 
 ### Still Command Line Tool
-!!! warning "Changes @Path from @Path"
+!!! warning "Changes @Path from @ServicePath"
 
     If you're using Still.js version <=0.0.17 the <b>`@ServicePath`</b> annotation
     is named <b>`@Path`</b>.
