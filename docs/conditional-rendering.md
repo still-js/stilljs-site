@@ -3,7 +3,7 @@ When it comes to handle specific part of a component/UI in order to hide/unhide 
 
 
 
-### The <b>`(showIf)`</b> Directive example:
+### The <b>`(showIf) - showIf`</b> Directive example:
 
 As the directive itself suggests, this directive will <b>`show`</b> a content <b>`If`</B> the assigned flag matches the stated condition, in case the condition is not matched, it'll hide the content.
 
@@ -43,7 +43,7 @@ It's mandatory to specify the container (see <a href="../directive/#container-di
 
 In the above example, the flag need to be boolean, in this case it will be checked that if it's true, then the data will be showed, otherise (if false), it'll hidden. 
 
-It's also possible to negate the <b>`(showIf)`</b> flag by putting ! before the flag itself, if that's the case we'll have the code as follow:
+It's also possible to negate the <b>`(showIf)` - renderIf</b> flag by putting ! before the flag itself, if that's the case we'll have the code as follow:
 
 ```html
 <div (showIf)="!self.showDate">

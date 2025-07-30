@@ -18,6 +18,7 @@ nav:
   - COMPONENT ANNOTATIONS: annotation.md
   - TEMPLATE DIRECTIVE: directive.md
   - CONDITIONAL RENDERING, SHOW/HIDE: conditional-rendering.md
+  - TEMPLATE BUSINESS LOGIC: template-logic.md
   - ROUTING & NAVIGATION: routing.md
   - LIFECYCLE HOOKS: lifecycle-hooks.md
   - APP TEMPLATE: app-template.md
