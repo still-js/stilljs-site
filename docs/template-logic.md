@@ -11,6 +11,7 @@ As of version 1.3.0, Still.js supports template logic, allowing developers to co
 2. Conditional rendering of the <b>`@for`</b> content without reactive effect (top-level <b>`@if`</b>)
 3. Keep reactive effect while conditional rendering of the <b>`@for`</b> content (with <a href="../conditional-rendering/#the-showif-showif-directive-example"><b>`(showIf)`</b></a>)
 4. Top Level conditional (<b>`@if`</b>).
+5. Conditional CSS formatting.
 
 <br>
 
@@ -262,8 +263,105 @@ Like the (forEach) directive, we can pass another component inside the loop.
 ![](assets/img/afto-w-component.png){:width="500"}
 
 
+<br>
+
+
+
+#### Conditional formating and Defining each loop output id to leverage Partial DOM update
+
+Partial dom update will happen through the top-most item of the for loop even when in nesting loop scenario, then this is where we need to set the id.
+
+The id should be unique for each item, it needs to come from the data, not from the index. the field name needs to be id.
+
+=== "OrganizationHierarchy.html"
+
+    ```html title="Template" linenums="1" hl_lines="6 15-17"
+    <div style="padding: 20px;">
+
+	  <button (click)="updateRole()">Update role</button>
+	  <ul>
+	    @for(role in this.rolesList)
+	      <li id="{role.id}">
+	    	{role.title}
+	    	<ul style="margin-left: 15px;">
+	    	  @for(subRole in role.children)
+	    	  <li>
+	    		{subRole.title}
+	  		    <ul style="margin-left: 15px;">
+	  			  @for(subSubRole in subRole.children)
+                    <!-- Bellow we're setting the text color conditionally -->
+	  			    <li style="color: { subSubRole.title.indexOf('Senior') >= 0 ? 'green' : '' }">
+	  				  {subSubRole.title}
+	  			    </li>
+	  			  @endfor
+	  		    </ul>
+	    	  </li>  
+	    	  @endfor
+	    	</ul>
+	      </li>
+	    @endfor
+	  </ul>
+
+    </div>
+    ```
+
+=== "OrganizationHierarchy.js + data"
+
+    ```js title="Template" linenums="1" hl_lines="12-29 31-37"
+    import { ViewComponent } from "../../@still/component/super/ViewComponent.js";
+    import { ListState } from "../../@still/component/type/ComponentType.js";
+    import { organizationData } from "./organization-data.js";
+
+    export class OrganizationHierarchy extends ViewComponent {
+
+        isPublic = true;
+
+        // Data is assigned straight, but could come from API
+        // ListState type is convinient for supporting .update
+        /** @type { ListState<Array> } */
+        rolesList = [
+            {
+                "id": 1,//First item unique id
+                "title": "Vice President of Engineering",
+                "children": [ {
+                    "title": "Engineering Manager",
+                    "children": [{"title": "Senior Dev"},{"title": "Dev"}]
+                }]
+            },
+            {
+                "id": 2,//Second item unique id
+                "title": "Vice President of Marketing",
+                "children": [ {
+                    "title": "Marketing Manager",
+                    "children": [ {"title": "Marketing Specialist"} ]
+                }]
+            }
+        ];
+
+        updateRole(){
+            const role = this.rolesList.value[0];
+            role.title = 'Senior VP of Eng';
+            role.children[0].children[0].title = 'Tech Lead';		
+            role.children[0].children[1].title = 'Senior Dev';		
+            this.rolesList.update([role]);
+        }
+
+    }
+    ```
+
+When updating, we call the update method under the list, and we need to pass either the whoule list (updatet), or an array with every single update item.
+
+Deletion capability is also available, then, when it comes to @for loop item we have to specify an array with the different elements to remove. E.g. `this.rolesList.delete([2])` will remove the Vice President of Marketing.
+
+<b>Result:</b>
+
+![](assets/img/atfor-dom-update.gif){:width="500"}
 
 <br>
+
+
+
+
 
 ### Top Level conditional using @if/@endif (if)
 
@@ -442,9 +540,9 @@ The directive is placed straight to our list tag (UL) thereby replacing the @if 
 
 Inline block is especially for conditional scenario, except for loops (for) it supports whole <b>`if`</b> statements block with as well as <b>`else if`</b> as needed.
 
-=== "OrganizationHierarchy.js"
+=== "OrganizationHierarchy.html"
 
-    ```js title="Component" linenums="1" hl_lines="3"
+    ```html title="Component" linenums="1" hl_lines="3"
     <div style="padding: 20px;">
 
     ${ this.userPermission === 'Admin' ? 'Full User Privileges' : 'Limitted User Privileges' }
@@ -471,6 +569,10 @@ Inline block is especially for conditional scenario, except for loops (for) it s
         border: 1px solid;
     }
 </style>
+
+The inline expression is also a good approach for conditional formating when outside the for loop.
+
+<br>
 
 ### To conclude
 
