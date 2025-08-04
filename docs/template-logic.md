@@ -124,7 +124,7 @@ The comming examples will be based in the following project structure:
 
 The example loops through a tree structure (from a file, could be API), printing items at each level. The outer most (first) <b>`@for`</b> references a component variable, so <b>`this.`</b> is required.
 
-### Still Command Line Tool
+#### Fetching from API consideration
 !!! warning Fetching from API
 
     When data is being fetched from the API, the state variables (list) needs to be initialized with a empty array ([]), in this case it would be as follow:
